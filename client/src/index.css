@@ -1,13 +1,56 @@
-body {
+
+
+nav {
+  box-sizing: border-box;
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  height: 100px;
+  background-color: palegreen;
+  color: white;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between ;
+ 
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+nav .logo {
+  max-height: 80px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* donordash */
+
+.donorDashboard{
+  padding: 30px;
+  width: 100%;
+}
+
+.donorDashboard .donationContainer{
+  height: 80vh;
+  overflow: scroll;
+}
+
+.donorPreview{
+  display: flex;
+  width: 95%;
+  border: dotted 1px;
+}
+
+.donorPreview #link{
+  display: flex;
+  width: 100%;
+  background-color: orange;
+  margin: 10px;
+  padding: 30px;
+  width: 1100%;
+  align-items: center;
+  justify-content: space-between;
+
+}
+
+.donorPreview .nameDisplay{
+
 }
