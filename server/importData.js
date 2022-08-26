@@ -11,13 +11,14 @@ const options = {
 };
 
 // const Donors = require("./data/Donorsdb.json");
-const Fundraisers = require("./Data/Fundraisersdb.json");
+// const Fundraisers = require("./Data/Fundraisersdb.json");
+const Grants = require("./Data/Grantsdb.json");
 
 const importData = async () => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("ArtConnect");
-  await db.collection("Fundraisers").insertMany(Fundraisers);
+  await db.collection("Grants").insertMany(Grants);
 
   client.close();
 };

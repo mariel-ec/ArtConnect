@@ -19,8 +19,12 @@ app.get("/api/donors", getDonors);
 app.get("/api/donordetails/:donorId", getDonorById);
 
 //fundraisers
-// app.get("/api/get-fundraisers", getFundraisers);
-// app.get("/api/get-fundraisers/:fundraisers", getFundraisersById);
+//app.get("/api/fundraisers", getFundraisers);
+//app.get("/api/fundraiserdetails/:fundraiserId", getFundraiserById);
+
+//grants
+//app.get("/api/grants", getGrants);
+//app.get("/api/grantdetails/:grantId", getGrantById)
 
 
 

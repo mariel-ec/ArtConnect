@@ -15,16 +15,16 @@ const HomePage = () => {
         </Link>
       </DonorButtonContainer>
       <FundButtonContainer>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "/fundraiser";
-          }}
-        >
-          <img src={FundraiserButton} alt="abstract art fundraiser button" />
-        </button>
+        <Link to="/fundraisers">
+        <img src={FundraiserButton} alt="abstract art fundraiser button" />
+        </Link>
       </FundButtonContainer>
+      <GrantButtonContainer>
+        <Link to="/Grants">
+          <div>grants</div>
+        </Link>
+      </GrantButtonContainer>
+
     </div>
   );
 };
@@ -38,6 +38,11 @@ const DonorButtonContainer = styled.div`
 `;
 
 const FundButtonContainer = styled.div`
+  display: flex;
+  opacity: 50%;
+`;
+
+const GrantButtonContainer = styled.div`
   display: flex;
   opacity: 50%;
 `;
