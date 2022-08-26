@@ -6,7 +6,7 @@ export const DonorProvider = ({ children }) => {
   const [donorDetail, setDonorDetail] = useState("");
   const [donorLoad, setDonorLoad] = useState(false);
 
-  //fetch items for Donor Dashboard
+
 
   return (
     <DonorContext.Provider

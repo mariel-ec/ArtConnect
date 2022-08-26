@@ -7,10 +7,12 @@ import HomePage from "./pages/HomePage";
 import DonorDashboard from "./pages/DonorDashboard";
 import DonorDetails from "./pages/DonorDetails";
 
+
 import DonorContext from "./DonorContext";
 
 const App = () => {
   const { setDonor } = useContext(DonorContext);
+  // const { setFundraiser } = useContext()
   // const donorId = useParams().donorId;
   // const { setDonorDetail, donorDetail } = useContext(DonorContext);
 
@@ -27,14 +29,15 @@ const App = () => {
   }, []);
 
   // useEffect(() => {
-  //   fetch(`api/donors/${donorId}`)
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setDonorDetail(data.data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(e);
-  //     });
+  //   fetch("/api/get-fundraisers")
+  //   .then((res) => res.json())
+  //   .then((data) => {
+  //     console.log("data", data.data);
+  //     setFundraiser(data.data);
+  //   })
+  //   .catch((e) => {
+  //     console.log(e);
+  //   });
   // }, []);
 
   return (

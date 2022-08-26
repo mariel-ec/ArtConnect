@@ -14,9 +14,16 @@ app.use(express.json());
 app.use(express.static("public"));
 
 //Endpoints:
+//donors
+app.get("/api/donors", getDonors);
+app.get("/api/donordetails/:donorId", getDonorById);
 
-app.get("/api/get-donors", getDonors);
-app.get("/api/get-donor/:donor", getDonorById);
+//fundraisers
+// app.get("/api/get-fundraisers", getFundraisers);
+// app.get("/api/get-fundraisers/:fundraisers", getFundraisersById);
+
+
+
 
 app.get("*", (req, res) => {
   res.status(404).json({

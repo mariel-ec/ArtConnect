@@ -18,7 +18,7 @@ const DonorDetails = () => {
   // 
 
   useEffect(() => {
-    fetch(`api/get-donors/${ donorId }`)
+    fetch(`/api/donordetails/${ donorId }`)
       .then((res) => res.json())
       .then((data) => {
         setDonorDetail(data.data);
