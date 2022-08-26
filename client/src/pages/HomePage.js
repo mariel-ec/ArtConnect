@@ -3,23 +3,18 @@ import React from "react";
 import DonorButton from "../images/Donors.png";
 import FundraiserButton from "../images/Fundraisers.png";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
     <div className="homepage">
       <h1>Art Connect'd</h1>
       <DonorButtonContainer>
-        <button
-          type="button"
-          onClick={(e) => {
-            e.preventDefault();
-            window.location.href = "/donordash";
-          }}
-        >
+        <Link to="/donors">
           <img src={DonorButton} alt="abstract art donor button" />
-        </button>
-        </DonorButtonContainer>
-        <FundButtonContainer>
+        </Link>
+      </DonorButtonContainer>
+      <FundButtonContainer>
         <button
           type="button"
           onClick={(e) => {
@@ -29,8 +24,7 @@ const HomePage = () => {
         >
           <img src={FundraiserButton} alt="abstract art fundraiser button" />
         </button>
-        </FundButtonContainer>
-     
+      </FundButtonContainer>
     </div>
   );
 };
@@ -44,7 +38,6 @@ const DonorButtonContainer = styled.div`
 `;
 
 const FundButtonContainer = styled.div`
-display: flex;
-opacity: 50%;
-
-`
+  display: flex;
+  opacity: 50%;
+`;

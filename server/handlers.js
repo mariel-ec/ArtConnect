@@ -1,45 +1,52 @@
 "use strict";
 
 const { MongoClient } = require("mongodb");
-const { v4: uuidv4 } = requrie("uuid");
+const ObjectId = require("mongodb").ObjectId;
+const { v4: uuidv4 } = require("uuid");
 
 require("dotenv").config();
 const { MONGO_URI } = process.env;
+console.log("MONGO_URI", MONGO_URI);
 
 const options = {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 };
 
-const sendResponse = (res, status, data, message = "No message included.") => {
-    return 
-    res.status(status).json({ status, data, message });
+const sendResponse = (res, status, data, message = "No message included") => {
+  return res.status(status).json({ status, data, message });
 };
 
-//return list of all donors
+//DONORSSSSSS
 const getDonors = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-    await client.connect()
-    const db = client.db("ArtConnect");
-    const allDonors = await db.collection("Donors").find().toArray();
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("ArtConnect");
+  const allDonors = await db.collection("Donors").find().toArray();
 
-    allDonors ? sendResponse(res, 200, allDonors) : sendResponse(res, 404, null, "Donors not found");
-}
-
-//return one specific donor
-const getDonorsByID = async (req, res) => {
-    const client = new MongoClient(MONGO_URI, options);
-    await client.connect()
-    const db = client.db("ArtConnect");
-    const name = req.params.Donor;
-
-    const result = await db.collection("Donors").findOne({ _id: ObjectId(_id)});
-    result ? sendResponse(res, 200, result) : sendResponse(res, 404, null, "Donor not found");
-    client.close();
+  allDonors
+    ? sendResponse(res, 200, allDonors)
+    : sendResponse(res, 404, null, "Donors not found");
+  client.close();
 };
 
-// //add donor/create donor card
-// const addDonor = async (req, res) => {
-//     const client = new MongoClient(MONG_URI, options);
-//     const 
-// }
+
+
+
+//ONE DONOR
+const getDonorById = async (req, res) => {
+  const client = new MongoClient(MONGO_URI, options);
+  await client.connect();
+  const db = client.db("ArtConnect");
+  const _id = req.params.donor;
+  var o_id = new ObjectId(_id);
+  const result = await db.collection("Donors").findOne({ _id: o_id });
+  console.log(result);
+
+  result
+    ? sendResponse(res, 200, result)
+    : sendResponse(res, 404, null, "Donor not found");
+  client.close();
+};
+
+module.exports = { getDonors, getDonorById };
