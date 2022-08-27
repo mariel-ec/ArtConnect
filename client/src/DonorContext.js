@@ -19,8 +19,15 @@ export const DonorProvider = ({ children }) => {
         setDonorDetail,
         grant,
         setGrant,
+        grantDetail,
+        setGrantDetail,
         fundraiser,
         setFundraiser,
+        setFundraiserDetail,
+        fundraiserDetail
+        
+    
+
       }}
     >
       {children}

@@ -4,40 +4,35 @@ import styled from "styled-components";
 import DonorContext from "../DonorContext";
 
 const GrantDetails = () => {
-    const grantId = useParams().grantId;
-    const { setGrantDetail, grantDetail } = useContext(DonorContext);
+  const grantId = useParams().grantId;
+  const { setGrantDetail, grantDetail } = useContext(DonorContext);
 
-    useEffect(() => {
-        fetch(`api/grantdetails/${ grantId }`)
-        .then((res) => res.json())
-        .then((data) => {
-            setGrantDetail(data.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, [grantId]);
+  useEffect(() => {
+    fetch(`/api/grantdetails/${grantId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setGrantDetail(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [grantId]);
 
-    if (!grantDetail) {
-        return <div>loading...</div>
-    }
+  if (!grantDetail) {
+    return <div>loading...</div>;
+  }
 
-return (
+  return (
     <>
-    <Wrapper>
+      <Wrapper>
         <Grant key={grantDetail.o_id}>
-            <NameOfGrant>{`${grantDetail.nameOfGrant}`}</NameOfGrant>
-            <GrantBody>{`${grantDetail.grantBody}`}</GrantBody>
-            <GrantAmount><{`${grantDetail.grantAmount}`}</GrantAmount>
+          <NameOfGrant>{`${grantDetail.nameOfGrant}`}</NameOfGrant>
+          <GrantBody>{`${grantDetail.grantBody}`}</GrantBody>
+          <GrantAmount>{`${grantDetail.grantAmount}`}</GrantAmount>
         </Grant>
-    </Wrapper>
-    
+      </Wrapper>
     </>
-);
-
-
-
-
+  );
 };
 
 const Wrapper = styled.div`
@@ -65,6 +60,11 @@ const Grant = styled.div`
   align-items: center;
   margin-left: 8em;
   flex-direction: column;
+`;
+
+const NameOfGrant = styled.div`
+  font-size: 14px;
+  color: darkblue;
 `;
 
 const GrantBody = styled.div`

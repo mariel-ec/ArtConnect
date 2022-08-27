@@ -1,13 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import DonorDetails from "./DonorDetails";
 import { useNavigate } from "react-router-dom";
 
 export const DonorDash = () => {
-  const { donor } = useContext(DonorContext);
-  console.log("donor", donor);
+  const { donor, setDonor } = useContext(DonorContext);
   const [numDonors, setNumDonors] = useState(10);
   const MAXDONORS = 20;
   const navigate = useNavigate();
@@ -21,6 +20,18 @@ export const DonorDash = () => {
   const handleDonorDetail = (url) => {
     navigate(url);
   };
+
+  useEffect(() => {
+    fetch("/api/donors")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data.data);
+        setDonor(data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
   if (!donor) return <Loading>Loading...</Loading>;
 
@@ -51,7 +62,7 @@ export const DonorDash = () => {
   );
 };
 
-// handleItemDetail(`/itemdetails/${items?._id}`);
+
 
 const Wrapper = styled.div`
   display: flex;

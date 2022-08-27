@@ -1,23 +1,34 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 
 export const GrantDash = () => {
-    const { grant } = useContext(DonorContext);
+    const { grant, setGrant } = useContext(DonorContext);
     const navigate = useNavigate();
     const handleGrantDetail = (url) => {
         navigate(url);
     };
 
+  useEffect(() => {
+    fetch("/api/grants")
+    .then((res) => res.json())
+    .then((data) => {
+      setGrant(data.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  }, []);
+
     if (!grant) return <Loading>Loading...</Loading>
 
-    const grantsToShow = grant.slide();
+    // const grantsToShow = grant.slide();
 
     return(
         <Wrapper>
             <Div>
-                {grantsToShow.map((grants) => {
+                {grant.map((grants) => {
                     return(
                         <Grants 
                         key={grants._id}
@@ -109,6 +120,13 @@ const NameOfGrant = styled.div`
 `;
 
 const GrantBody = styled.div`
+  bottom: 15vh;
+  left: 3vw;
+  color: #a10a0a;
+  padding-top: 1em;
+`;
+
+const Loading = styled.div`
   bottom: 15vh;
   left: 3vw;
   color: #a10a0a;

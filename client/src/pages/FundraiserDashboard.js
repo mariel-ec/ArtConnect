@@ -1,42 +1,55 @@
-import React, { useState, useContext } from "react";
+import React, { useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 // import FundraiserDetailrs from "./FundraiserDetails";
 
-
 export const FundraiserDash = () => {
-    const { fundraiser } = useContext(DonorContext);
-   
-    const navigate = useNavigate();
+  const { fundraiser, setFundraiser } = useContext(DonorContext);
 
-    const handleFundraiserDetail = (url) => {
-        navigate(url);
-    };
+  const navigate = useNavigate();
 
-    if (!fundraiser) return <Loading>Loading...</Loading>
+  const handleFundraiserDetail = (url) => {
+    navigate(url);
+  };
 
-    const fundraisersToShow = fundraiser.slice();
+  useEffect(() => {
+    fetch("/api/fundraisers")
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("data", data.data);
+        setFundraiser(data.data);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  }, []);
 
-    return(
-        <Wrapper>
-            <Div>
-                {fundraisersToShow.map((fundraisers) => {
-                    return(
-                        <Fundraisers 
-                        key={fundraisers._id}
-                        onClick={() => {
-                            handleFundraiserDetail(`/fundraiserdetails/${fundraisers?._id}`);                           
-                        }}
-                        >
-                            <NameOfFundraiser>{`${fundraisers.nameOfFundraiser}`}</NameOfFundraiser>
-                            <Coordinator>{`${fundraisers.coordinator}`}</Coordinator>
-                        </Fundraisers>
-                    );
-                })}
-            </Div>
-        </Wrapper>
-    );
+  if (!fundraiser) return <Loading>Loading...</Loading>;
+
+  // const fundraisersToShow = fundraiser.slice();
+
+  return (
+    <Wrapper>
+      <Div>
+        {fundraiser.map((fundraisers) => {
+          return (
+            <Fundraisers
+              key={fundraisers._id}
+              onClick={() => {
+                handleFundraiserDetail(
+                  `/fundraiserdetails/${fundraisers?._id}`
+                );
+              }}
+            >
+              <NameOfFundraiser>{`${fundraisers.nameOfFundraiser}`}</NameOfFundraiser>
+              <Coordinator>{`${fundraisers.coordinator}`}</Coordinator>
+            </Fundraisers>
+          );
+        })}
+      </Div>
+    </Wrapper>
+  );
 };
 const Wrapper = styled.div`
   display: flex;
@@ -115,8 +128,6 @@ const Coordinator = styled.div`
   color: #a10a0a;
   padding-top: 1em;
 `;
-
-
 
 const Loading = styled.div`
   font-size: 1.5em;

@@ -6,7 +6,8 @@ const app = express();
 
 const PORT = 8000;
 
-const { getDonors, getDonorById } = require("./handlers");
+const { getDonors, getDonorById, getFundraisers, getFundraiserById, getGrants, getGrantById } = require("./handlers");
+
 
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -19,12 +20,12 @@ app.get("/api/donors", getDonors);
 app.get("/api/donordetails/:donorId", getDonorById);
 
 //fundraisers
-//app.get("/api/fundraisers", getFundraisers);
-//app.get("/api/fundraiserdetails/:fundraiserId", getFundraiserById);
+app.get("/api/fundraisers", getFundraisers);
+app.get("/api/fundraiserdetails/:fundraiserId", getFundraiserById);
 
 //grants
-//app.get("/api/grants", getGrants);
-//app.get("/api/grantdetails/:grantId", getGrantById)
+app.get("/api/grants", getGrants);
+app.get("/api/grantdetails/:grantId", getGrantById)
 
 
 

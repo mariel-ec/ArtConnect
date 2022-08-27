@@ -8,7 +8,7 @@ const FundraiserDetails = () => {
     const { setFundraiserDetail, fundraiserDetail} = useContext(DonorContext);
 
     useEffect(() => {
-        fetch(`api/fundraiserdetails/${ fundraiserId }`)
+        fetch(`/api/fundraiserdetails/${ fundraiserId }`)
         .then((res) => res.json())
         .then((data) => {
             setFundraiserDetail(data.data);
