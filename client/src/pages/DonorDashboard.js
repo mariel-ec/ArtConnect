@@ -3,17 +3,18 @@ import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 import { useContext, useEffect } from "react";
 import DonorDetails from "./DonorDetails";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+
 
 export const DonorDash = () => {
   const { donor, setDonor } = useContext(DonorContext);
-  const [numDonors, setNumDonors] = useState(10);
-  const MAXDONORS = 20;
+  const [numDonors, setNumDonors] = useState(6);
+  const MAXDONORS = 100;
   const navigate = useNavigate();
 
   const handleClick = () => {
-    if (numDonors <= MAXDONORS - 10) {
-      setNumDonors(numDonors + 10);
+    if (numDonors <= MAXDONORS - 6) {
+      setNumDonors(numDonors + 6);
     }
   };
 
@@ -39,8 +40,16 @@ export const DonorDash = () => {
 
   // donor/donorId
 
+  // <Link to="/about">
+  //         <button>Click</button>
+  //       </Link>
+
   return (
     <Wrapper>
+      <h1>Donors</h1>
+      
+      <Link to="/">
+      <ButtonNew>Add a new donor</ButtonNew></Link>
       <Div>
         {donorsToShow.map((donors) => {
           return (
@@ -50,19 +59,19 @@ export const DonorDash = () => {
                 handleDonorDetail(`/donordetails/${donors?._id}`);
               }}
             >
-              <City>{`${donors.city}`}</City>
-              <Fundraiser>{`${donors.fundraiserAttended}`}</Fundraiser>
-              <Donation>{`${donors.donationAmount}`}</Donation>
+              <Img src={`${donors.imageSrc}`} />
+
+              <h3>{`${donors.name}`}</h3>
+              <h5>{`${donors.city}`}</h5>
             </Donors>
           );
         })}
         <Button onClick={handleClick}>View more donors</Button>
+       
       </Div>
     </Wrapper>
   );
 };
-
-
 
 const Wrapper = styled.div`
   display: flex;
@@ -70,10 +79,11 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   margin: 0px;
-  gap: 20px;
+  gap: 10px;
   padding: 4em;
-  background: linear-gradient(45deg, #bacabe 0%, #bbcffa 90%);
+
   flex-wrap: wrap;
+  background-color: #f7f5ed;
 `;
 const Div = styled.div`
   max-width: 100vw;
@@ -81,74 +91,99 @@ const Div = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding: 5em;
-  gap: 8em;
+  gap: 5em;
   flex-grow: 1;
+`;
+
+const Img = styled.img`
+  max-height: 150px;
+  min-height: 150px;
+  display: flex;
+  border-radius: 50%;
+  margin-block: 15% 10%;
 `;
 
 const Button = styled.button`
   border: none;
   align-self: flex-end;
   border-radius: 1.5em;
-  font-family: var(--body-font);
-  width: 8em;
+  width: 20em;
   height: 2.8em;
   font-size: 0.9em;
-  background-color: crimson;
-  color: white;
-  position: sticky;
+  background-color: #959595;
+  color: black;
+  position: relative;
   bottom: 0.2em;
   left: 10em;
   :hover {
     cursor: pointer;
-    background: linear-gradient(45deg, #00e6f6 10%, #1f6cab 90%);
+    background: #aaaaaa;
     color: black;
     transform: scale(1.08);
     transition: 0.3s;
   }
 `;
 
+const ButtonNew = styled.button`
+  border: none;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  top: 0.2em;
+  left: 10em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
+  }
+`
+
 const Donors = styled.div`
   display: flex;
-  outline: 0.1rem solid #1f6caa;
-  border-radius: 0.8em;
-  box-shadow: 0.5em 0.5em 3em 0.5em ghostwhite;
+  border-radius: 0.5em;
+  box-shadow: 0.5em 0.5em 0.5em 0.5em lightgrey;
   width: 17em;
   height: 20em;
   justify-content: space-between;
   align-items: center;
-  gap: 5px;
+  /* gap: 5px; */
   flex-direction: column;
+  background-color: white;
   :hover {
     cursor: pointer;
-    background: #ffffff;
-    color: #0acaff;
+    background-color: #e2d3cf;
+
+    color: black;
     transition: 0.5s;
     transform: scale3d(1.2, 1.2, 1);
     font-weight: bold;
   }
 `;
 
-const City = styled.div`
-  bottom: 15vh;
-  left: 3vw;
-  color: #a10a0a;
-  padding-top: 1em;
-`;
 
-const Donation = styled.div`
-  bottom: 15vh;
-  left: 3vw;
-  color: #a10a0a;
-  padding-top: 1em;
-`;
 
-const Fundraiser = styled.div`
-  text-align: center;
-  font-size: 0.9em;
-  padding-bottom: 1em;
+// const Name = styled.div`
+//   color: black;
+//   font-weight: bold;
+//   margin-bottom: 30%;
 
-  display: flex;
-`;
+// `;
+
+// const City = styled.div`
+//   color: black;
+//   padding-bottom: 10%;
+
+
+// `;
+
+
 
 const Loading = styled.div`
   font-size: 1.5em;

@@ -8,7 +8,7 @@ const options = {
   useUnifiedTopology: true,
 };
 
-const Donors = require("./data/Donorsdb.json");
+const Donors = require("./Data/Donorsdb.json");
 // const Fundraisers = require("./Data/Fundraisersdb.json");
 // const Grants = require("./Data/Grantsdb.json");
 

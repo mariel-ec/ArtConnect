@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
+import GrantLogo from "../images/dummyprofilepic/GrantLogo.png";
 
 export const GrantDash = () => {
     const { grant, setGrant } = useContext(DonorContext);
@@ -27,6 +28,12 @@ export const GrantDash = () => {
 
     return(
         <Wrapper>
+ <h1>Grants</h1>
+<Link to="/">
+ 
+
+
+      <ButtonNew>Add a new grant</ButtonNew></Link>
             <Div>
                 {grant.map((grants) => {
                     return(
@@ -36,9 +43,12 @@ export const GrantDash = () => {
                             handleGrantDetail(`/grantdetails/${grants?._id}`);
                         }}
                         >
+                          <DetailDiv>
+                            <Img src={GrantLogo} />
                             <NameOfGrant>{`${grants.nameOfGrant}`}</NameOfGrant>
                             <GrantBody>{`${grants.grantBody}`}</GrantBody>
                             <GrantAmount>{`${grants.grantAmount}`}</GrantAmount>
+                            </DetailDiv>
                         </Grants>
                     );
                 })}
@@ -50,13 +60,13 @@ export const GrantDash = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  font-family: var(--body-font);
+ 
   align-items: center;
   flex-direction: column;
   margin: 0px;
-  gap: 20px;
+  gap: 10px;
   padding: 4em;
-  background: linear-gradient(45deg, #bacabe 0%, #bbcffa 90%);
+  background: #f7f5ed;
   flex-wrap: wrap;
 `;
 const Div = styled.div`
@@ -65,63 +75,63 @@ const Div = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   padding: 5em;
-  gap: 8em;
+  gap: 2em;
   flex-grow: 1;
 `;
 
+const DetailDiv = styled.div`
+color: black;
+  flex: 30%;
+    display: flex;
+   padding-left: 5vh;
+   padding-right: 5vh;
+    align-items: center;
+`
+
+
+
 const Grants = styled.button`
-  border: none;
-  align-self: flex-end;
-  border-radius: 1.5em;
-  font-family: var(--body-font);
-  width: 8em;
-  height: 2.8em;
-  font-size: 0.9em;
-  background-color: crimson;
-  color: white;
-  position: sticky;
-  bottom: 0.2em;
-  left: 10em;
+border: none;
+display: inline-flex;
+  border-radius: 0.5em;
+  box-shadow: 0.5em 0.5em 0.5em 0.5em lightgrey;
+  width: 50em;
+  height: 5em;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 10px; */
+  flex-direction: column;
+  background-color: white;
   :hover {
     cursor: pointer;
-    background: linear-gradient(45deg, #00e6f6 10%, #1f6cab 90%);
+    background-color: #e2d3cf;
+
     color: black;
-    transform: scale(1.08);
-    transition: 0.3s;
+    transition: 0.5s;
+    transform: scale3d(1.2, 1.2, 1);
+    font-weight: bold;
   }
 `;
 
-// const Name = styled.div`
-//   display: flex;
-//   outline: 0.1rem solid #1f6caa;
-//   border-radius: 0.8em;
-//   box-shadow: 0.5em 0.5em 3em 0.5em ghostwhite;
-//   width: 17em;
-//   height: 20em;
-//   justify-content: space-between;
-//   align-items: center;
-//   gap: 5px;
-//   flex-direction: column;
-//   :hover {
-//     cursor: pointer;
-//     background: #ffffff;
-//     color: #0acaff;
-//     transition: 0.5s;
-//     transform: scale3d(1.2, 1.2, 1);
-//     font-weight: bold;
-//   }
-// `;
+const Img = styled.div`
+position: left;
+max-height: 50px;
+padding-left: 10vh;
+padding-right: 10vh;
+`;
 
 const NameOfGrant = styled.div`
-  bottom: 15vh;
-  left: 3vw;
+   bottom: 15vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
 `;
 
 const GrantBody = styled.div`
   bottom: 15vh;
-  left: 3vw;
+  padding-left: 5vh;
+  padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
 `;
@@ -133,10 +143,32 @@ const Loading = styled.div`
   padding-top: 1em;
 `;
 const GrantAmount = styled.div`
-  bottom: 15vh;
-  left: 3vw;
+ bottom: 15vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
 `;
+
+const ButtonNew = styled.button`
+border: none;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  top: 0.2em;
+  left: 10em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
+  }
+`
 
 export default GrantDash
