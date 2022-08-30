@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useParams } from "react";
 import DonorDetails from "./DonorDetails";
 import { useNavigate, Link } from "react-router-dom";
+
+
+
 
 
 export const DonorDash = () => {
@@ -11,6 +14,10 @@ export const DonorDash = () => {
   const [numDonors, setNumDonors] = useState(6);
   const MAXDONORS = 100;
   const navigate = useNavigate();
+  
+
+
+ 
 
   const handleClick = () => {
     if (numDonors <= MAXDONORS - 6) {
@@ -38,15 +45,61 @@ export const DonorDash = () => {
 
   const donorsToShow = donor.slice(0, numDonors);
 
-  // donor/donorId
+ 
 
-  // <Link to="/about">
-  //         <button>Click</button>
-  //       </Link>
+
+
+  ///searchbar function
+
+  // const Typeahead = ({ suggestions, handleSelect }) => {
+  //   const [value, setValue] = useState("");
+  //   const matchedSuggestions = suggestions.filter((suggestion) => {
+  //     return suggestion.name.toLowerCase().includes(value.toLowerCase())
+  //   });
+
+  //   const GetDonorSuggestion = (({ suggestion, categoryIdentity }) => {
+  //     if (!suggestion.toLowerCase().startsWith(value)) {
+  //       return <span>{suggestion}</span>;
+  //     }
+
+  //   const userInputLength = value.length;
+  //   const DonorName = data._id[categoryIdentity].name;
+  //   return (
+  //   <span>
+  //     {suggestion.substring(0, userInputLength)}
+  //     <Prediction>
+  //       {suggestion.substring(userInputLength)}
+  //     </Prediction>
+  //     <DonorDiv> in <DonorSpecific>{DonorName}</DonorSpecific></DonorDiv>
+  //   </span>
+  //   );
+  //   });
+
+
+
+
+  
+
+ 
 
   return (
     <Wrapper>
       <h1>Donors</h1>
+      {/* <SearchBar>
+        <input
+          type="text"
+          placeholder="search"
+          value={value}
+          onChange={(ev) => setValue(ev.target.value)}
+          />
+
+          
+      </SearchBar> */}
+
+
+
+
+
       
       <Link to="/">
       <ButtonNew>Add a new donor</ButtonNew></Link>
@@ -73,6 +126,8 @@ export const DonorDash = () => {
   );
 };
 
+
+
 const Wrapper = styled.div`
   display: flex;
   font-family: var(--body-font);
@@ -85,6 +140,12 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   background-color: #f7f5ed;
 `;
+
+const SearchBar = styled.div`
+
+`;
+
+
 const Div = styled.div`
   max-width: 100vw;
   display: flex;

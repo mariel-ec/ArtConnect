@@ -114,13 +114,22 @@ const updateGrant = async (req, res) => {
     grantBody, 
     grantAmount, 
     dueDate, 
-    _id 
-  } = req.body;
+    _id } = req.body;
   const query = { _id: ObjectId(_id) };
-  const newValues = { $set: { nameOfGrant, 
-    grantBody, 
-    grantAmount, 
-    dueDate } };
+  const newValues = { $set: { 
+    name: req.body.nameOfGrant
+      ? req.body.nameOfGrant 
+      : grant.nameOfGrant,
+    grantBody: req.body.grantBody
+      ? req.body.grantBody
+      :grant.grantBody,
+    grantAmount: req.body.grantAmount
+      ? req.body.grantAmount
+      : grant.grantAmount,
+    dueDate: req.body.dueDate
+      ? req.body.dueDate
+      : grant.dueDate
+  } };
   const result = await db.collection("Grants").updateOne(query, newValues);
 
   console.log(result);
@@ -134,25 +143,29 @@ const updateFundraiser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("ArtConnect");
-  const { nameOfFundraiser,
+  const {
+    nameOfFundraiser,
     dateOfFundraiser,
     locationOfFundraiser,
     coordinator,
     fundraisingGoal,
     totalFundraised,
-    _id
+    _id,
   } = req.body;
   const query = { _id: ObjectId(_id) };
-  const newValues = { $set:{
-    nameOfFundraiser,
-dateOfFundraiser,
-locationOfFundraiser,
-coordinator,
-fundraisingGoal,
-totalFundraised} };
-const result = await db.collection("Grants").updateOne(query, newValues);
+  const newValues = {
+    $set: {
+      nameOfFundraiser,
+      dateOfFundraiser,
+      locationOfFundraiser,
+      coordinator,
+      fundraisingGoal,
+      totalFundraised,
+    },
+  };
+  const result = await db.collection("Grants").updateOne(query, newValues);
 
-console.log(result);
+  console.log(result);
   result
     ? sendResponse(res, 200, result)
     : sendResponse(res, 404, null, "Fundraiser not found");
@@ -163,56 +176,86 @@ const updateDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("ArtConnect");
-  const { 
-    name,
-    email,
-    profession,
-    artInterests,
-    _id
-  } = req.body;
+  const { name, email, profession, artInterests, _id, city, fundraiserAttended, donationAmount, donationDate } = req.body;
   const query = { _id: ObjectId(_id) };
-  const newValues = { $set:{
-    name,
-    email,
-    profession,
-    artInterests } };
-const result = await db.collection("Donors").updateOne(query, newValues);
+  //get existing donor
+  const donor = await db.collection("Donors").findOne(query);
 
-console.log(result);
+  const newValues = {
+    $set: {
+      name: req.body.name 
+        ? req.body.name 
+        : donor.name,
+      email: req.body.email 
+        ? req.body.email 
+        : donor.email,
+      profession: req.body.profession 
+        ? req.body.profession 
+        : donor.profession,
+      artInterests: req.body.artInterests
+        ? req.body.artInterests
+        : donor.artInterests,
+      city: req.body.city ? req.body.city : donor.city,
+      fundraiserAttended: req.body.fundraiserAttended
+        ? req.body.fundraiserAttended
+        : donor.fundraiserAttended,
+      donationAmount: req.body.donationAmount 
+        ? req.body.donationAmount 
+        : donor.donationAmount,
+      donationDate: req.body.donationDate 
+        ? req.body.donationDate 
+        : donor.donationDate,
+
+    },
+  };
+
+  const result = await db.collection("Donors").updateOne(query, newValues);
+
+  console.log(result);
   result
     ? sendResponse(res, 200, result)
     : sendResponse(res, 404, null, "Fundraiser not found");
   client.close();
 };
 
-
 //NEW DONORS,FUNDRAISERS, GRANTS, DONATIONS
 const addDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const {
-    name,
-    email,
-    profession,
-    artInterests,
+  const { 
+    name, 
+    email, 
+    profession, 
+    artInterests, 
+    city, 
+    fundraiserAttended, 
+    donationAmount, 
+    donationDate 
   } = req.body;
+
   const newDonor = {
-    _id: uuidv4(),
     name,
     email,
     profession,
     artInterests,
+    city,
+    fundraiserAttended,
+    donationAmount,
+    donationDate
   };
   try {
     await client.connect();
     const db = client.db("ArtConnect");
     await db.collection("Donors").insertOne(newDonor);
 
-    res
-    .status(201)
-    .json({ status: 201, data: newDonor, message: "donor successfully added" });
+    res.status(201).json({
+      status: 201,
+      data: newDonor,
+      message: "donor successfully added",
+    });
   } catch (err) {
-    rest.status(400).json({ 
-      status: 400, message: "Error"
+    rest.status(400).json({
+      status: 400,
+      message: "Error",
     });
   }
   client.close();
@@ -242,12 +285,15 @@ const addFundraiser = async (req, res) => {
     const db = client.db("ArtConnect");
     await db.collection("Fundraisers").insertOne(newFundraiser);
 
-    res
-    .status(201)
-    .json({ status: 201, data: newDonor, message: "fundraiser successfully added" });
+    res.status(201).json({
+      status: 201,
+      data: newDonor,
+      message: "fundraiser successfully added",
+    });
   } catch (err) {
-    rest.status(400).json({ 
-      status: 400, message: "Error"
+    rest.status(400).json({
+      status: 400,
+      message: "Error",
     });
   }
   client.close();
@@ -255,30 +301,34 @@ const addFundraiser = async (req, res) => {
 
 const addGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const {
+  const { 
     nameOfGrant, 
     grantBody, 
     grantAmount, 
-    dueDate, 
+    dueDate 
   } = req.body;
+
   const newGrant = {
-    _id: uuidv4(),
-    nameOfGrant, 
-    grantBody, 
-    grantAmount, 
-    dueDate, 
+    // _id: uuidv4(),
+    nameOfGrant,
+    grantBody,
+    grantAmount,
+    dueDate,
   };
   try {
     await client.connect();
     const db = client.db("ArtConnect");
     await db.collection("Grants").insertOne(newGrant);
 
-    res
-    .status(201)
-    .json({ status: 201, data: newDonor, message: "grant successfully added" });
+    res.status(201).json({
+      status: 201,
+      data: newDonor,
+      message: "grant successfully added",
+    });
   } catch (err) {
-    rest.status(400).json({ 
-      status: 400, message: "Error"
+    rest.status(400).json({
+      status: 400,
+      message: "Error",
     });
   }
   client.close();
@@ -286,28 +336,27 @@ const addGrant = async (req, res) => {
 
 const addDonation = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const {
-    donorName,
-    donationDate,
-    donationAmount,
-  } = req.body;
+  const { donorName, donationDate, donationAmount } = req.body;
   const newDonation = {
     _id: uuidv4(),
     donorName,
     donationDate,
-    donationEvent 
+    donationEvent,
   };
   try {
     await client.connect();
     const db = client.db("ArtConnect");
     await db.collection("Donations").insertOne(newDonation);
 
-    res
-    .status(201)
-    .json({ status: 201, data: newDonor, message: "donation successfully added" });
+    res.status(201).json({
+      status: 201,
+      data: newDonor,
+      message: "donation successfully added",
+    });
   } catch (err) {
-    rest.status(400).json({ 
-      status: 400, message: "Error"
+    rest.status(400).json({
+      status: 400,
+      message: "Error",
     });
   }
   client.close();
@@ -320,40 +369,44 @@ const deleteDonorById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const _id = req.params.donorId;
 
-  try{
+  try {
     await client.connect();
     const db = client.db("ArtConnect");
 
-    const result = await db.collection("Donors").deleteOne({ _id });
+    const result = await db.collection("Donors").deleteOne({ _id: ObjectId(_id) });
     result.deletedCount
-      ? res.status(200).json({ status: 200, data: result, message: "donor is deleted" })
+      ? res
+          .status(200)
+          .json({ status: 200, data: result, message: "donor is deleted" })
       : res.status(404).json({ status: 404, message: "donor not found" });
   } catch (err) {
     console.log(err.stack);
     res.status(400).json({ status: 400, message: "error" });
   }
   client.close();
-}
+};
 
-//delete fundraiser 
+//delete fundraiser
 const deleteFundraiserById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const _id = req.params.fundraiserId;
 
-  try{
+  try {
     await client.connect();
     const db = client.db("ArtConnect");
 
     const result = await db.collection("Fundraisers").deleteOne({ _id });
     result.deletedCount
-      ? res.status(200).json({ status: 200, data: result, message: "fundraiser is deleted" })
+      ? res
+          .status(200)
+          .json({ status: 200, data: result, message: "fundraiser is deleted" })
       : res.status(404).json({ status: 404, message: "fundraiser not found" });
   } catch (err) {
     console.log(err.stack);
     res.status(400).json({ status: 400, message: "error" });
   }
   client.close();
-}
+};
 
 //delete grant
 
@@ -361,41 +414,44 @@ const deleteGrantById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const _id = req.params.donorId;
 
-  try{
+  try {
     await client.connect();
     const db = client.db("ArtConnect");
 
     const result = await db.collection("Grants").deleteOne({ _id });
     result.deletedCount
-      ? res.status(200).json({ status: 200, data: result, message: "grant is deleted" })
+      ? res
+          .status(200)
+          .json({ status: 200, data: result, message: "grant is deleted" })
       : res.status(404).json({ status: 404, message: "grant not found" });
   } catch (err) {
     console.log(err.stack);
     res.status(400).json({ status: 400, message: "error" });
   }
   client.close();
-}
+};
 
 //delete donation
 const deleteDonationById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const _id = req.params.donorId;
 
-  try{
+  try {
     await client.connect();
     const db = client.db("ArtConnect");
 
     const result = await db.collection("Donations").deleteOne({ _id });
     result.deletedCount
-      ? res.status(200).json({ status: 200, data: result, message: "donation is deleted" })
+      ? res
+          .status(200)
+          .json({ status: 200, data: result, message: "donation is deleted" })
       : res.status(404).json({ status: 404, message: "donation not found" });
   } catch (err) {
     console.log(err.stack);
     res.status(400).json({ status: 400, message: "error" });
   }
   client.close();
-}
-
+};
 
 module.exports = {
   getDonors,
@@ -414,7 +470,5 @@ module.exports = {
   deleteDonorById,
   deleteDonationById,
   deleteFundraiserById,
-  deleteGrantById
-
-
+  deleteGrantById,
 };

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-
 const AddDonor = () => {
   const { donorId } = useParams;
   const [donorData, setDonorData] = useState({});
@@ -16,72 +15,107 @@ const AddDonor = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    fetch(`/api/updatedonor/${donorId}`,
-      {
-        headers: { "Content-Type": "application/json" },
-        method: "PATCH",
-        body: JSON.stringify(donorData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === 200) {
-            navigate(`/donor/${donorId}`);
-          }
-        });
+    fetch(`/api/newdonor`, {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(donorData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 201) {
+          navigate(`/donordetails/${data.data._id}`);
+        }
+      });
   };
 
   return (
     <Wrapper>
       <div>Edit Donor Information</div>
 
-      <form onSubmit={submitHandler}>
-        <label>Name</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="name"
-          type="text"
-        />
+      <Form onSubmit={submitHandler}>
+      <ul>
+          <label>Name:</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="name"
+            type="text"
+            
+          />
 
-        <label>Address</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="address"
-          type="text"
-        />
+          <label>City:</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="city"
+            type="text"
+            
+          />
 
-        <label>Email </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="email"
-          type="text"
-        />
+          <label>Email: </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="email"
+            type="text"
+            
+          />
+          <label>Area of Interest (Art): </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="Art Interest"
+            type="text"
+            
+          />
 
-        <label>Profession </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="Profession"
-          type="text"
-        />
+          <label>Profession: </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="Profession"
+            type="text"
+          
+          />
+          <h3>Most Recent Donation</h3>
+          <label> Last Fundraiser Attended </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="artInterest"
+            type="text"
+          
+          />
 
-        <label> Art Interest </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="artInterest"
-          type="text"
-        />
+          <label> Last Donation Amount ($) </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="donationAmount"
+            type="text"
+          
+          />
 
-        <button>Update</button>
-      </form>
+          <label> Last Donation Date </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="donationDate"
+            type="text"
+           
+          />
+        </ul>
+
+        <Button>Add !</Button>
+      </Form>
     </Wrapper>
   );
 };

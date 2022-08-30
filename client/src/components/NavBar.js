@@ -4,9 +4,7 @@ import styled from "styled-components";
 import ACLogo from "../images/ACLogo.png";
 import { useState } from "react";
 
-
 const Nav = () => {
-
   return (
     <Wrapper>
       <LeftSide>
@@ -14,16 +12,10 @@ const Nav = () => {
           <Img src={ACLogo} alt="ArtConnectLogo" />
         </LogoContainer>
 
-        <MenuLink exact path="/">
-          {" "}
-          Home{" "}
-        </MenuLink>
-        <MenuLink exact path="/donordashboard">
-          {" "}
-          Donors{" "}
-        </MenuLink>
-        <MenuLink to="/fundraiserdashboard"> Fundraisers </MenuLink>
-        <MenuLink to="/grantdashboard"> Grants </MenuLink>
+        <NavLink to="/"> Home </NavLink>
+        <NavLink to="/donors">Donors</NavLink>
+        <NavLink to="/fundraisers"> Fundraisers </NavLink>
+        <NavLink to="/grants"> Grants </NavLink>
       </LeftSide>
 
       <RightSide>

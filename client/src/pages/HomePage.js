@@ -31,7 +31,7 @@ const HomePage = () => {
         </Link>
       </FundButtonContainer>
       <GrantButtonContainer>
-        <Link to="/Grants">
+        <Link to="/grants">
         <Img src={GRANTSLOGO} alt="abstract art grant button" />
         </Link>
       </GrantButtonContainer>

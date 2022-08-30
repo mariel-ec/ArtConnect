@@ -1,86 +1,126 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import DonorContext from "../DonorContext";
 
 const UpdateDonor = () => {
-  const { donorId } = useParams;
+  const { donorDetail } = useContext(DonorContext);
+  const { donorId } = useParams();
+
   const [donorData, setDonorData] = useState({});
+
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setDonorData({
-      ...DonorData,
+      ...donorData,
       [e.target.name]: e.target.value,
     });
   };
 
   const submitHandler = (e) => {
+    const updatedInfo = { ...donorData, _id: donorId };
     e.preventDefault();
-    fetch(`/api/updatedonor/${donorId}`,
-      {
-        headers: { "Content-Type": "application/json" },
-        method: "PATCH",
-        body: JSON.stringify(donorData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === 200) {
-            navigate(`/donor/${donorId}`);
-          }
-        });
+    fetch(`/api/updatedonor`, {
+      headers: { "Content-Type": "application/json" },
+      method: "PATCH",
+      body: JSON.stringify(updatedInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          navigate(`/donordetails/${donorId}`);
+        }
+      });
   };
 
   return (
     <Wrapper>
       <div>Edit Donor Information</div>
 
-      <form onSubmit={submitHandler}>
-        <label>Name</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="name"
-          type="text"
-        />
+      <Form onSubmit={submitHandler}>
+        <ul>
+          <label>Name:</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="name"
+            type="text"
+            placeholder={donorDetail.name}
+          />
 
-        <label>Address</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="address"
-          type="text"
-        />
+          <label>City:</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="city"
+            type="text"
+            placeholder={donorDetail.city}
+          />
 
-        <label>Email </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="email"
-          type="text"
-        />
+          <label>Email: </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="email"
+            type="text"
+            placeholder={donorDetail.email}
+          />
+          <label>Area of Interest (Art): </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="Art Interest"
+            type="text"
+            placeholder={donorDetail.artInterest}
+          />
 
-        <label>Profession </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="Profession"
-          type="text"
-        />
+          <label>Profession: </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="Profession"
+            type="text"
+            placeholder={donorDetail.profession}
+          />
+          <h3>Most Recent Donation</h3>
+          <label> Last Fundraiser Attended </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="artInterest"
+            type="text"
+            placeholder={donorDetail.fundraiserAttended}
+          />
 
-        <label> Art Interest </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="artInterest"
-          type="text"
-        />
+          <label> Last Donation Amount ($) </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="donationAmount"
+            type="text"
+            placeholder={donorDetail.donationAmount}
+          />
 
-        <button>Update</button>
-      </form>
+          <label> Last Donation Date </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="donationDate"
+            type="text"
+            placeholder={donorDetail.donationDate}
+          />
+        </ul>
+
+        <Button>Update</Button>
+      </Form>
     </Wrapper>
   );
 };
@@ -95,7 +135,7 @@ const Wrapper = styled.div`
   padding-bottom: 80px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 90vw;
   padding: 90px;
   display: flex;
@@ -124,4 +164,3 @@ const Button = styled.button`
 `;
 
 export default UpdateDonor;
-

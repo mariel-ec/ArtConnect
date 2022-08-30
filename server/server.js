@@ -36,7 +36,7 @@ app.use(express.static("public"));
 //donors
 app.get("/api/donors", getDonors);
 app.get("/api/donordetails/:donorId", getDonorById);
-app.patch("/updatedonor", updateDonor);
+app.patch("/api/updatedonor", updateDonor);
 app.post("/api/newdonor", addDonor);
 app.delete("/api/deletedonor/:donorId", deleteDonorById);
 
@@ -47,7 +47,6 @@ app.patch("/api/updatefundraiser", updateFundraiser);
 app.post("/api/newfundraiser", addFundraiser);
 app.delete("/api/deletefundraiser/:fundraiserId", deleteFundraiserById);
 
-
 //grants
 app.get("/api/grants", getGrants);
 app.get("/api/grantdetails/:grantId", getGrantById);
@@ -56,8 +55,7 @@ app.post("/api/newgrant", addGrant);
 app.delete("/api/deletegrant", deleteGrantById);
 
 //donations
-app.post("/api/newdonation", addDonation);
-app.delete("/api/deletedonation/:donationId", deleteDonationById);
+
 
 
 

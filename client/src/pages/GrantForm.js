@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import DonorContext from "../DonorContext";
 
 const UpdateGrant = () => {
+  const { grantDetail } = useContext(DonorContext);
   const { grantId } = useParams;
   const [grantData, setGrantData] = useState({});
+
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setGrantData({
@@ -14,64 +17,69 @@ const UpdateGrant = () => {
   };
 
   const submitHandler = (e) => {
+    const updatedInfo = { ...grantData, _id: grantId };
     e.preventDefault();
-    fetch(`/api/updateGrant/${grantId}`,
-      {
-        headers: { "Content-Type": "application/json" },
-        method: "PATCH",
-        body: JSON.stringify(grantData),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          if (data.status === 200) {
-            navigate(`/grant/${grantId}`);
-          }
-        });
+    fetch(`/api/updateGrant`, {
+      headers: { "Content-Type": "application/json" },
+      method: "PATCH",
+      body: JSON.stringify(updatedInfo),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          navigate(`/grantdetails/${grantId}`);
+        }
+      });
   };
 
   return (
     <Wrapper>
       <div>Edit Grant Information</div>
 
-      <form onSubmit={submitHandler}>
-        <label>Grant Name</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="GrantName"
-          type="text"
-        />
+      <Form onSubmit={submitHandler}>
+        <ul>
+          <label>Grant Name</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="GrantName"
+            type="text"
+            placeholder={grantDetail.name}
+          />
 
-        <label>Granting Body</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="GrantBody"
-          type="text"
-        />
+          <label>Granting Body</label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="GrantBody"
+            type="text"
+            placeholder={grantDetail.grantBody}
+          />
 
-        <label>Grant Amount $ </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="GrantAmount"
-          type="text"
-        />
+          <label>Grant Amount $ </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="GrantAmount"
+            type="text"
+            placeholder={grantDetail.grantAmount}
+          />
 
-        <label>Due by: </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="DueDate"
-          type="text"
-        />
-
-        <button>Update</button>
-      </form>
+          <label>Due by: </label>
+          <input
+            onChange={(e) => {
+              onChangeHandler(e);
+            }}
+            name="DueDate"
+            type="text"
+            placeholder={grantDetail.dueDate}
+          />
+        </ul>
+        <Button>Update</Button>
+      </Form>
     </Wrapper>
   );
 };
