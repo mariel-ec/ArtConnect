@@ -30,7 +30,7 @@ const AddGrant = () => {
 
   return (
     <Wrapper>
-      <div>Edit Grant Information</div>
+      <div>New Grant Information</div>
 
       <Form onSubmit={submitHandler}>
         <ul>

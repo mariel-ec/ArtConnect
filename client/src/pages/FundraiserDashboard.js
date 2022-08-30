@@ -3,7 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 import Nav from "../components/NavBar";
-import FundLogo from "../images/dummyprofilepic/FundLogo.png";
+import FundLogo from "../images/dummyprofilepic/FundLogo.png"
 // import FundraiserDetailrs from "./FundraiserDetails";
 
 export const FundraiserDash = () => {
@@ -32,13 +32,12 @@ export const FundraiserDash = () => {
   // const fundraisersToShow = fundraiser.slice();
 
   return (
-   
+
     <Wrapper>
       <h1>Fundraisers</h1>
-      <Link to="/">
-      <ButtonNew>Add a new donor</ButtonNew></Link>
-      <Link to="/">
-      <ButtonDon>Add a new donation</ButtonDon></Link>
+      <Link to="/newfundraiser">
+      <ButtonNew>Add a new fundraiser</ButtonNew></Link>
+      
       
       <Div>
         {fundraiser.map((fundraisers) => {
@@ -68,7 +67,6 @@ export const FundraiserDash = () => {
 };
 const Wrapper = styled.div`
    display: flex;
-
   align-items: center;
   flex-direction: column;
   margin: 0%;

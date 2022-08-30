@@ -1,8 +1,8 @@
 import React, { useState, useContext, useEffect, useParams } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { DonorContext } from "../DonorContext";
-import GrantLogo from "../images/dummyprofilepic/GrantLogo.png";
+import { DonorContext } from ""
+// import GrantLogo from "../images/dummyprofilepic/GLogo.png"
 
 export const GrantDash = () => {
   // const grantId = useParams().grantId;
@@ -30,7 +30,7 @@ export const GrantDash = () => {
   return (
     <Wrapper>
       <h1>Grants</h1>
-      <Link to="/">
+      <Link to="/newgrant">
         <ButtonNew>Add a new grant</ButtonNew>
       </Link>
       <Div>
@@ -43,7 +43,7 @@ export const GrantDash = () => {
               }}
             >
               <DetailDiv>
-                <Img src={GrantLogo} />
+                {/* <Img src={GrantLogo} /> */}
                 <NameOfGrant>{`${grants.nameOfGrant}`}</NameOfGrant>
                 <GrantBody>{`${grants.grantBody}`}</GrantBody>
                 <GrantAmount>{`${grants.grantAmount}`}</GrantAmount>

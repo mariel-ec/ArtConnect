@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 import { useContext, useEffect, useParams } from "react";
-import DonorDetails from "./DonorDetails";
+import DonorDetails from "./donors/DonorDetails";
 import { useNavigate, Link } from "react-router-dom";
 
 
@@ -101,7 +101,7 @@ export const DonorDash = () => {
 
 
       
-      <Link to="/">
+      <Link to="/newdonor">
       <ButtonNew>Add a new donor</ButtonNew></Link>
       <Div>
         {donorsToShow.map((donors) => {

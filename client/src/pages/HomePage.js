@@ -79,10 +79,11 @@ position: center;
 const ButtonDiv = styled.div`
 display: flex;
 
+
     justify-content: center;
     align-items: center;
     padding: 10px;
-    gap: 1em;
+    gap: 10em;
     flex-grow: 1;
    
     margin-left: 50%;
@@ -95,10 +96,10 @@ const DonorButtonContainer = styled.div`
   height: 100px;
   width: 100px;
   display: flex;
-  opacity: 50%;
+  opacity: 100%;
   border: none;
   :hover{
-    opacity:100%;
+    opacity:70%;
   }
 `;
 
@@ -106,9 +107,9 @@ const FundButtonContainer = styled.div`
 height: 100px;
 width: 100px;
   display: flex;
-  opacity: 50%;
+  opacity: 100%;
   :hover{
-    opacity: 100%;
+    opacity: 70%;
   }
 `;
 
@@ -116,9 +117,9 @@ const GrantButtonContainer = styled.div`
 height: 100px;
 width: 100px;
   display: flex;
-  opacity: 50%;
+  opacity: 100%;
   :hover{
-    opacity: 100%;
+    opacity: 70%;
   }
 `;
 

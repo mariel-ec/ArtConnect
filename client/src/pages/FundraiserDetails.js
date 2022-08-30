@@ -1,11 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
 
 const FundraiserDetails = () => {
     const fundraiserId = useParams().fundraiserId;
     const { setFundraiserDetail, fundraiserDetail} = useContext(DonorContext);
+    const navigate = useNavigate();
+
+  const deleteHandler = () => {
+    fetch(`api/deletefundraiser/${fundraiserId}`, {
+      method: "DELETE",
+    })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.status === 200) {
+        window.alert("Fundraiser deleted !");
+        setTimeout(() => {
+          navigate("/fundraisers");
+        }, 2000)
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  };
+
 
     useEffect(() => {
         fetch(`/api/fundraiserdetails/${ fundraiserId }`)
@@ -26,9 +46,18 @@ return (
     <>
         <Wrapper>
             <Fundraisers key={fundraiserDetail.o_id}>
+              <ul>
                 <NameOfFundraiser>{`${fundraiserDetail.nameOfFundraiser}`}</NameOfFundraiser>
                 <Coordinator>{`${fundraiserDetail.coordinator}`}</Coordinator>
                 <FundraisingGoal>{`${fundraiserDetail.fundraisingGoal}`}</FundraisingGoal>
+          <Button 
+            onClick={() => {
+              navigate(`/fundraiserdetails/${fundraiserId}/fundraiserform`);
+            }}
+            >Edit</Button>
+            <Button onClick={deleteHandler}> Delete Fundraiser</Button>
+          
+           </ul>
             </Fundraisers>
         </Wrapper>
     
@@ -42,16 +71,37 @@ return (
 
 const Wrapper = styled.div`
   display: flex;
-  font-family: var(--body-font);
+  /* font-family: var(--body-font); */
   align-items: center;
   flex-direction: column;
   justify-items: center;
-  margin-left: 30em;
-  margin-top: 1em;
-  width: 50em;
+  /* margin-left: 30em;
+  margin-top: 1em; */
+  /* width: 50em; */
   padding: 4.5em;
-  background: linear-gradient(45deg, #bacabe 0%, #bbcffa 90%);
+
   flex-wrap: wrap;
+  background-color: #f7f5ed;
+`;
+const Button = styled.button`
+  border: none;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  bottom: 0.2em;
+  left: 10em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
+  }
 `;
 
 const Fundraisers = styled.div`

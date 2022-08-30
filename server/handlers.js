@@ -110,26 +110,19 @@ const updateGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("ArtConnect");
-  const { nameOfGrant, 
-    grantBody, 
-    grantAmount, 
-    dueDate, 
-    _id } = req.body;
+  const { nameOfGrant, grantBody, grantAmount, dueDate, _id } = req.body;
   const query = { _id: ObjectId(_id) };
-  const newValues = { $set: { 
-    name: req.body.nameOfGrant
-      ? req.body.nameOfGrant 
-      : grant.nameOfGrant,
-    grantBody: req.body.grantBody
-      ? req.body.grantBody
-      :grant.grantBody,
-    grantAmount: req.body.grantAmount
-      ? req.body.grantAmount
-      : grant.grantAmount,
-    dueDate: req.body.dueDate
-      ? req.body.dueDate
-      : grant.dueDate
-  } };
+  const grant = await db.collection("Grants").findOne(query);
+  const newValues = {
+    $set: {
+      name: req.body.nameOfGrant ? req.body.nameOfGrant : grant.nameOfGrant,
+      grantBody: req.body.grantBody ? req.body.grantBody : grant.grantBody,
+      grantAmount: req.body.grantAmount
+        ? req.body.grantAmount
+        : grant.grantAmount,
+      dueDate: req.body.dueDate ? req.body.dueDate : grant.dueDate,
+    },
+  };
   const result = await db.collection("Grants").updateOne(query, newValues);
 
   console.log(result);
@@ -153,14 +146,27 @@ const updateFundraiser = async (req, res) => {
     _id,
   } = req.body;
   const query = { _id: ObjectId(_id) };
+  const fundraiser = await db.collection("Fundraisers").findOne(query);
   const newValues = {
     $set: {
-      nameOfFundraiser,
-      dateOfFundraiser,
-      locationOfFundraiser,
-      coordinator,
-      fundraisingGoal,
-      totalFundraised,
+      nameOfFundraiser: req.body.nameOfFundraiser
+        ? req.body.nameOfFundraiser
+        : fundraiser.nameOfFundraiser,
+      dateOfFundraiser: req.body.dateOfFundraiser
+        ? req.body.dateOfFundraiser
+        : fundraiser.dateOfFundraiser,
+      locationOfFundraiser: req.body.locationOfFundraiser
+        ? req.body.locationOfFundraiser
+        : fundraiser.locationOfFundraiser,
+      coordinator: req.body.coordinator
+        ? req.body.coordinator
+        : fundraiser.coordinator,
+      fundraisingGoal: req.body.fundraisingGoal
+        ? req.body.fundraisingGoal
+        : fundraiser.fundraisingGoal,
+      totalFundraised: req.body.totalFundraised
+        ? req.body.totalFundraised
+        : fundraiser.totalFundraised,
     },
   };
   const result = await db.collection("Grants").updateOne(query, newValues);
@@ -176,22 +182,26 @@ const updateDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
   const db = client.db("ArtConnect");
-  const { name, email, profession, artInterests, _id, city, fundraiserAttended, donationAmount, donationDate } = req.body;
+  const {
+    name,
+    email,
+    profession,
+    artInterests,
+    _id,
+    city,
+    fundraiserAttended,
+    donationAmount,
+    donationDate,
+  } = req.body;
   const query = { _id: ObjectId(_id) };
   //get existing donor
   const donor = await db.collection("Donors").findOne(query);
 
   const newValues = {
     $set: {
-      name: req.body.name 
-        ? req.body.name 
-        : donor.name,
-      email: req.body.email 
-        ? req.body.email 
-        : donor.email,
-      profession: req.body.profession 
-        ? req.body.profession 
-        : donor.profession,
+      name: req.body.name ? req.body.name : donor.name,
+      email: req.body.email ? req.body.email : donor.email,
+      profession: req.body.profession ? req.body.profession : donor.profession,
       artInterests: req.body.artInterests
         ? req.body.artInterests
         : donor.artInterests,
@@ -199,13 +209,12 @@ const updateDonor = async (req, res) => {
       fundraiserAttended: req.body.fundraiserAttended
         ? req.body.fundraiserAttended
         : donor.fundraiserAttended,
-      donationAmount: req.body.donationAmount 
-        ? req.body.donationAmount 
+      donationAmount: req.body.donationAmount
+        ? req.body.donationAmount
         : donor.donationAmount,
-      donationDate: req.body.donationDate 
-        ? req.body.donationDate 
+      donationDate: req.body.donationDate
+        ? req.body.donationDate
         : donor.donationDate,
-
     },
   };
 
@@ -221,15 +230,15 @@ const updateDonor = async (req, res) => {
 //NEW DONORS,FUNDRAISERS, GRANTS, DONATIONS
 const addDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const { 
-    name, 
-    email, 
-    profession, 
-    artInterests, 
-    city, 
-    fundraiserAttended, 
-    donationAmount, 
-    donationDate 
+  const {
+    name,
+    email,
+    profession,
+    artInterests,
+    city,
+    fundraiserAttended,
+    donationAmount,
+    donationDate,
   } = req.body;
 
   const newDonor = {
@@ -240,7 +249,7 @@ const addDonor = async (req, res) => {
     city,
     fundraiserAttended,
     donationAmount,
-    donationDate
+    donationDate,
   };
   try {
     await client.connect();
@@ -271,8 +280,9 @@ const addFundraiser = async (req, res) => {
     fundraisingGoal,
     totalFundraised,
   } = req.body;
+
   const newFundraiser = {
-    _id: uuidv4(),
+    // _id: uuidv4(),
     nameOfFundraiser,
     dateOfFundraiser,
     locationOfFundraiser,
@@ -301,12 +311,7 @@ const addFundraiser = async (req, res) => {
 
 const addGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const { 
-    nameOfGrant, 
-    grantBody, 
-    grantAmount, 
-    dueDate 
-  } = req.body;
+  const { nameOfGrant, grantBody, grantAmount, dueDate } = req.body;
 
   const newGrant = {
     // _id: uuidv4(),
@@ -373,7 +378,9 @@ const deleteDonorById = async (req, res) => {
     await client.connect();
     const db = client.db("ArtConnect");
 
-    const result = await db.collection("Donors").deleteOne({ _id: ObjectId(_id) });
+    const result = await db
+      .collection("Donors")
+      .deleteOne({ _id: ObjectId(_id) });
     result.deletedCount
       ? res
           .status(200)
@@ -395,7 +402,9 @@ const deleteFundraiserById = async (req, res) => {
     await client.connect();
     const db = client.db("ArtConnect");
 
-    const result = await db.collection("Fundraisers").deleteOne({ _id });
+    const result = await db
+      .collection("Fundraisers")
+      .deleteOne({ _id: ObjectId(_id) });
     result.deletedCount
       ? res
           .status(200)

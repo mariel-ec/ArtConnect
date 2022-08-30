@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import DonorContext from "../DonorContext";
 
 
 const UpdateFundraiser = () => {
     const { fundraiserId } = useParams;
+    const { fundraiserDetail } = useContext(DonorContext);
     const [fundraiserData, setFundraiserData] = useState({});
     const navigate = useNavigate();
     const onChangeHandler = (e) => {
@@ -15,8 +17,9 @@ const UpdateFundraiser = () => {
     };
   
     const submitHandler = (e) => {
+      const updatedInfo = { ...fundraiserData, _id: fundraiserId };
       e.preventDefault();
-      fetch(`/api/updatefundraisert/${fundraiserId}`,
+      fetch(`/api/updatefundraisert`,
         {
           headers: { "Content-Type": "application/json" },
           method: "PATCH",
@@ -42,6 +45,7 @@ const UpdateFundraiser = () => {
             }}
             name="nameOfFundraiser"
             type="text"
+            placeholder={fundraiserDetail.nameOfFundraiser}
           />
   
           <label>Fundraiser Date</label>
@@ -51,6 +55,7 @@ const UpdateFundraiser = () => {
             }}
             name="dateOfFundraiser"
             type="text"
+            placeholder={fundraiserDetail.dateOfFundraiser}
           />
   
           <label>Fundraiser Location </label>
@@ -60,6 +65,7 @@ const UpdateFundraiser = () => {
             }}
             name="locationOfFundraiser"
             type="text"
+            placeholder={fundraiserDetail.locationOfFundraiser}
           />
   
           <label>Coordinator</label>
@@ -69,6 +75,7 @@ const UpdateFundraiser = () => {
             }}
             name="coordinator"
             type="text"
+            placeholder={fundraiserDetail.coordinator}
           />
 
           <label>Fundraising Goal</label>
@@ -78,6 +85,8 @@ const UpdateFundraiser = () => {
             }}
             name="fundraisingGoal"
             type="text"
+            placeholder={fundraiserDetail.fundraisingGoal}
+          
           />
 
      <label>Total Raised</label>
@@ -87,6 +96,7 @@ const UpdateFundraiser = () => {
             }}
             name="totalRaised"
             type="text"
+            placeholder={fundraiserDetail.totalRaised}
           />
 
           <button>Update</button>
