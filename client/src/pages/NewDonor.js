@@ -3,12 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const AddDonor = () => {
-  const { donorId } = useParams;
-  const [donorData, setDonorData] = useState({});
+  const [newDonor, setNewDonor] = useState({});
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
-    setDonorData({
-      ...donorData,
+    setNewDonor({
+      ...newDonor,
       [e.target.name]: e.target.value,
     });
   };
@@ -18,7 +17,7 @@ const AddDonor = () => {
     fetch(`/api/newdonor`, {
       headers: { "Content-Type": "application/json" },
       method: "POST",
-      body: JSON.stringify(donorData),
+      body: JSON.stringify(newDonor),
     })
       .then((res) => res.json())
       .then((data) => {
@@ -30,10 +29,10 @@ const AddDonor = () => {
 
   return (
     <Wrapper>
-      <div>Edit Donor Information</div>
+      <div>New Donor Information</div>
 
       <Form onSubmit={submitHandler}>
-      <ul>
+        <ul>
           <label>Name:</label>
           <input
             onChange={(e) => {
@@ -41,7 +40,7 @@ const AddDonor = () => {
             }}
             name="name"
             type="text"
-            
+            value={newDonor.name}
           />
 
           <label>City:</label>
@@ -51,7 +50,7 @@ const AddDonor = () => {
             }}
             name="city"
             type="text"
-            
+            value={newDonor.city}
           />
 
           <label>Email: </label>
@@ -61,16 +60,16 @@ const AddDonor = () => {
             }}
             name="email"
             type="text"
-            
+            value={newDonor.email}
           />
           <label>Area of Interest (Art): </label>
           <input
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="Art Interest"
+            name="artInterests"
             type="text"
-            
+            value={newDonor.artInterests}
           />
 
           <label>Profession: </label>
@@ -78,9 +77,9 @@ const AddDonor = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="Profession"
+            name="profession"
             type="text"
-          
+            value={newDonor.profession}
           />
           <h3>Most Recent Donation</h3>
           <label> Last Fundraiser Attended </label>
@@ -88,9 +87,9 @@ const AddDonor = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="artInterest"
+            name="fundraiserAttended"
             type="text"
-          
+            value={newDonor.fundraiserAttended}
           />
 
           <label> Last Donation Amount ($) </label>
@@ -100,7 +99,7 @@ const AddDonor = () => {
             }}
             name="donationAmount"
             type="text"
-          
+            value={newDonor.donationAmount}
           />
 
           <label> Last Donation Date </label>
@@ -110,7 +109,7 @@ const AddDonor = () => {
             }}
             name="donationDate"
             type="text"
-           
+            value={newDonor.donationDate}
           />
         </ul>
 

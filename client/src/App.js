@@ -25,7 +25,7 @@ import DonorContext from "./DonorContext";
 const App = () => {
   const { setDonor } = useContext(DonorContext);
 
-  console.log("here", window.location);
+  // console.log("here", window.location);
   // const donorId = useParams().donorId;
   // const { setDonorDetail, donorDetail } = useContext(DonorContext);
 

@@ -4,21 +4,22 @@ import styled from "styled-components";
 import DonorContext from "../DonorContext";
 
 const UpdateDonor = () => {
-  const { donorDetail } = useContext(DonorContext);
+  const { donorDetail, setDonorDetail } = useContext(DonorContext);
+
   const { donorId } = useParams();
 
-  const [donorData, setDonorData] = useState({});
+  // const [donorData, setDonorData] = useState({});
 
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
-    setDonorData({
-      ...donorData,
+    setDonorDetail({
+      ...donorDetail,
       [e.target.name]: e.target.value,
     });
   };
 
   const submitHandler = (e) => {
-    const updatedInfo = { ...donorData, _id: donorId };
+    const updatedInfo = { ...donorDetail, _id: donorId };
     e.preventDefault();
     fetch(`/api/updatedonor`, {
       headers: { "Content-Type": "application/json" },
@@ -41,85 +42,70 @@ const UpdateDonor = () => {
         <ul>
           <label>Name:</label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="name"
             type="text"
-            placeholder={donorDetail.name}
+            value={donorDetail.name}
+            // placeholder={donorDetail.name}
           />
 
           <label>City:</label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="city"
             type="text"
-            placeholder={donorDetail.city}
+            value={donorDetail.city}
           />
 
           <label>Email: </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="email"
             type="text"
-            placeholder={donorDetail.email}
+            value={donorDetail.email}
           />
           <label>Area of Interest (Art): </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="Art Interest"
             type="text"
-            placeholder={donorDetail.artInterest}
+            value={donorDetail.artInterest}
           />
 
           <label>Profession: </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="Profession"
             type="text"
-            placeholder={donorDetail.profession}
+            value={donorDetail.profession}
           />
           <h3>Most Recent Donation</h3>
           <label> Last Fundraiser Attended </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="artInterest"
             type="text"
-            placeholder={donorDetail.fundraiserAttended}
+            value={donorDetail.fundraiserAttended}
           />
 
           <label> Last Donation Amount ($) </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="donationAmount"
             type="text"
-            placeholder={donorDetail.donationAmount}
+            value={donorDetail.donationAmount}
           />
 
           <label> Last Donation Date </label>
           <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
+            onChange={onChangeHandler}
             name="donationDate"
             type="text"
-            placeholder={donorDetail.donationDate}
+            value={donorDetail.donationDate}
           />
         </ul>
 
-        <Button>Update</Button>
+        <Button type="submit">Update</Button>
       </Form>
     </Wrapper>
   );

@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect, useParams } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { DonorContext } from ""
+import { DonorContext } from "../DonorContext"
 // import GrantLogo from "../images/dummyprofilepic/GLogo.png"
 
 export const GrantDash = () => {

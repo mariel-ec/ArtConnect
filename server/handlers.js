@@ -115,7 +115,9 @@ const updateGrant = async (req, res) => {
   const grant = await db.collection("Grants").findOne(query);
   const newValues = {
     $set: {
-      name: req.body.nameOfGrant ? req.body.nameOfGrant : grant.nameOfGrant,
+      nameOfGrant: req.body.nameOfGrant
+        ? req.body.nameOfGrant
+        : grant.nameOfGrant,
       grantBody: req.body.grantBody ? req.body.grantBody : grant.grantBody,
       grantAmount: req.body.grantAmount
         ? req.body.grantAmount
@@ -312,7 +314,7 @@ const addFundraiser = async (req, res) => {
 const addGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const { nameOfGrant, grantBody, grantAmount, dueDate } = req.body;
-
+  console.log(req.body);
   const newGrant = {
     // _id: uuidv4(),
     nameOfGrant,
@@ -327,11 +329,12 @@ const addGrant = async (req, res) => {
 
     res.status(201).json({
       status: 201,
-      data: newDonor,
+      data: newGrant,
       message: "grant successfully added",
     });
   } catch (err) {
-    rest.status(400).json({
+    console.log(err.message);
+    res.status(400).json({
       status: 400,
       message: "Error",
     });
@@ -421,13 +424,15 @@ const deleteFundraiserById = async (req, res) => {
 
 const deleteGrantById = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
-  const _id = req.params.donorId;
-
+  const _id = req.params.grantId;
+  console.log(_id);
   try {
     await client.connect();
     const db = client.db("ArtConnect");
 
-    const result = await db.collection("Grants").deleteOne({ _id });
+    const result = await db
+      .collection("Grants")
+      .deleteOne({ _id: ObjectId(_id) });
     result.deletedCount
       ? res
           .status(200)

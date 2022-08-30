@@ -6,26 +6,25 @@ const app = express();
 
 const PORT = 8000;
 
-const { getDonors, 
-  getDonorById, 
-  getFundraisers, 
-  getFundraiserById, 
-  getGrants, 
-  getGrantById, 
-  updateGrant, 
+const {
+  getDonors,
+  getDonorById,
+  getFundraisers,
+  getFundraiserById,
+  getGrants,
+  getGrantById,
+  updateGrant,
   updateFundraiser,
   updateDonor,
   addDonor,
-  addFundraiser, 
+  addFundraiser,
   addGrant,
   addDonation,
   deleteDonorById,
   deleteFundraiserById,
   deleteGrantById,
   deleteDonationById,
-
 } = require("./handlers");
-
 
 app.use(morgan("tiny"));
 app.use(express.json());
@@ -52,14 +51,9 @@ app.get("/api/grants", getGrants);
 app.get("/api/grantdetails/:grantId", getGrantById);
 app.patch("/api/updategrant", updateGrant);
 app.post("/api/newgrant", addGrant);
-app.delete("/api/deletegrant", deleteGrantById);
+app.delete("/api/deletegrant/:grantId", deleteGrantById);
 
 //donations
-
-
-
-
-
 
 app.get("*", (req, res) => {
   res.status(404).json({

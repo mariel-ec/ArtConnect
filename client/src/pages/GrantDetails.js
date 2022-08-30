@@ -48,7 +48,7 @@ const GrantDetails = () => {
         <Grant key={grantDetail.o_id}>
           <ul>
           <NameOfGrant>{`${
-            grantDetail.nameOfGrant ? grantDetail.name : ""
+            grantDetail.nameOfGrant ? grantDetail.nameOfGrant : ""
             }`}</NameOfGrant>
           <GrantBody>{`${
             grantDetail.grantBody ? grantDetail.grantBody : ""

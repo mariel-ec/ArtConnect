@@ -14,6 +14,7 @@ const AddGrant = () => {
   };
 
   const submitHandler = (e) => {
+    console.log("submit")
     e.preventDefault();
     fetch(`/api/newgrant`, {
       headers: { "Content-Type": "application/json" },
@@ -39,7 +40,7 @@ const AddGrant = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="GrantName"
+            name="nameOfGrant"
             type="text"
           />
 
@@ -48,7 +49,7 @@ const AddGrant = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="GrantBody"
+            name="grantBody"
             type="text"
           />
 
@@ -57,7 +58,7 @@ const AddGrant = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="GrantAmount"
+            name="grantAmount"
             type="text"
           />
 
@@ -66,11 +67,11 @@ const AddGrant = () => {
             onChange={(e) => {
               onChangeHandler(e);
             }}
-            name="DueDate"
+            name="dueDate"
             type="text"
           />
         </ul>
-        <Button> Add !</Button>
+        <Button type="submit"> Add !</Button>
       </Form>
     </Wrapper>
   );
@@ -86,7 +87,7 @@ const Wrapper = styled.div`
   padding-bottom: 80px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 90vw;
   padding: 90px;
   display: flex;

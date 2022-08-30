@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 import { useContext, useEffect, useParams } from "react";
-import DonorDetails from "./donors/DonorDetails";
+import DonorDetails from "./DonorDetails";
 import { useNavigate, Link } from "react-router-dom";
 
 
