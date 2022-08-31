@@ -54,7 +54,7 @@ return (
                 
                 <Coordinator>Coordinator: {`${fundraiserDetail.coordinator}`}</Coordinator>
                 <FundraisingGoal>Fundraising Goal: {`${fundraiserDetail.fundraisingGoal}`}</FundraisingGoal>
-                <TotalFundraised>Total Fundraised:{`${fundraiserDetail.totalFundraised}`}</TotalFundraised>
+                
           <Button 
             onClick={() => {
               navigate(`/fundraiserdetails/${fundraiserId}/fundraiserform`);

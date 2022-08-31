@@ -5,6 +5,9 @@ import styled from "styled-components";
 const AddDonor = () => {
   const [newDonor, setNewDonor] = useState({});
   const navigate = useNavigate();
+
+  const [uploadedFile, setUploadedFile] = useState({});
+
   const onChangeHandler = (e) => {
     setNewDonor({
       ...newDonor,
@@ -33,6 +36,17 @@ const AddDonor = () => {
 
       <Form onSubmit={submitHandler}>
         <ul>
+          <ol>
+            <label>Upload Profile Image: </label>
+            </ol><ol>
+            <input
+              type="file"
+              onChange={(event) => {
+                setUploadedFile(event.target.files);
+              }}
+              value={newDonor.imageSrc}
+            />
+          </ol>
           <ol>
             <label>Name:</label>
             <input
@@ -71,7 +85,7 @@ const AddDonor = () => {
               onChange={(e) => {
                 onChangeHandler(e);
               }}
-              name="artInterests"
+              name="artInterest"
               type="text"
               value={newDonor.artInterests}
             />

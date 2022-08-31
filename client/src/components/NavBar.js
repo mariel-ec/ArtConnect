@@ -5,6 +5,22 @@ import ACLogo from "../images/ACLogo.png";
 import { useState } from "react";
 
 const Nav = () => {
+
+//searchbar
+
+// const handleSubmit = () => {
+//   fetch(`/api/searchterm?searchTerm=${searchTerm}`)
+//     .then((res) => res.json())
+//     .then((data) => {
+      
+//       receiveSearchItemInfoFromServer(data.data);
+//       history.push("/search/search");
+//     });
+// };
+
+
+
+
   return (
     <Wrapper>
       <LeftSide>
@@ -19,10 +35,16 @@ const Nav = () => {
       </LeftSide>
 
       <RightSide>
-        <SearchBar>
-          <Input type="text" placeholder="search..." />
-          <Button>🔍︎</Button>
-        </SearchBar>
+        {/* <SearchBar>
+          <Input 
+          type="text" 
+          placeholder="search..." */}
+          {/* // value={searchTerm}
+          // onChange={handleSearchChange}
+          // onKeyDown={(ev) => handleKeyDown(ev)} />
+          /> */}
+          {/* <Button onClick={handleSubmit}>🔍︎</Button> */}
+        {/* </SearchBar> */}
       </RightSide>
     </Wrapper>
   );

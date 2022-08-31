@@ -93,17 +93,7 @@ const UpdateFundraiser = () => {
               value={fundraiserDetail.fundraisingGoal}
             />
           </ol>
-          <ol>
-            <label>Total Raised</label>
-            <input
-              onChange={(e) => {
-                onChangeHandler(e);
-              }}
-              name="totalRaised"
-              type="text"
-              placeholder={fundraiserDetail.totalRaised}
-            />
-          </ol>
+
           <Button type="submit">Update</Button>
         </ul>
       </Form>

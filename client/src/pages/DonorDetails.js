@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
+import FundLogo from "../images/dummyprofilepic/FundLogo.png";
 
 const DonorDetails = () => {
   // const [count, setCount] = useState(0);
@@ -57,7 +58,8 @@ const DonorDetails = () => {
           {/* <Address>{`${donorDetail.address}`}</Address> */}
 
           <ProfilePic>
-            <Img src={`${donorDetail.imageSrc}`} />
+            <Img src={`${
+              donorDetail.imageSrc}`} />
           </ProfilePic>
 
           <TextArea>

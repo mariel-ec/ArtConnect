@@ -189,7 +189,7 @@ const updateDonor = async (req, res) => {
     name,
     email,
     profession,
-    artInterests,
+    artInterest,
     _id,
     city,
     fundraiserAttended,
@@ -205,9 +205,9 @@ const updateDonor = async (req, res) => {
       name: req.body.name ? req.body.name : donor.name,
       email: req.body.email ? req.body.email : donor.email,
       profession: req.body.profession ? req.body.profession : donor.profession,
-      artInterests: req.body.artInterests
-        ? req.body.artInterests
-        : donor.artInterests,
+      artInterest: req.body.artInterest
+        ? req.body.artInterest
+        : donor.artInterest,
       city: req.body.city ? req.body.city : donor.city,
       fundraiserAttended: req.body.fundraiserAttended
         ? req.body.fundraiserAttended
@@ -237,7 +237,7 @@ const addDonor = async (req, res) => {
     name,
     email,
     profession,
-    artInterests,
+    artInterest,
     city,
     fundraiserAttended,
     donationAmount,
@@ -248,7 +248,7 @@ const addDonor = async (req, res) => {
     name,
     email,
     profession,
-    artInterests,
+    artInterest,
     city,
     fundraiserAttended,
     donationAmount,
