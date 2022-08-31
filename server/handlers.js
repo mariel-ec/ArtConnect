@@ -17,7 +17,7 @@ const sendResponse = (res, status, data, message = "No message included") => {
   return res.status(status).json({ status, data, message });
 };
 
-//DONORSSSSSS
+//ALL DONORS
 const getDonors = async (req, res) => {
   console.log("hey");
   const client = new MongoClient(MONGO_URI, options);
@@ -48,7 +48,7 @@ const getDonorById = async (req, res) => {
   client.close();
 };
 
-//FUNDRAISERS
+//ALL FUNDRAISERS
 const getFundraisers = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -76,7 +76,7 @@ const getFundraiserById = async (req, res) => {
   client.close();
 };
 
-// /GRANTS
+// /ALL GRANTS
 const getGrants = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -105,7 +105,7 @@ const getGrantById = async (req, res) => {
 };
 
 ///UPDATES
-
+// UPDATE GRANT
 const updateGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -133,7 +133,7 @@ const updateGrant = async (req, res) => {
     : sendResponse(res, 404, null, "Grant not found");
   client.close();
 };
-
+//UPDATE FUNDRAISER
 const updateFundraiser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -180,7 +180,7 @@ const updateFundraiser = async (req, res) => {
     : sendResponse(res, 404, null, "Fundraiser not found");
   client.close();
 };
-
+//UPDATE DONOR
 const updateDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   await client.connect();
@@ -231,9 +231,11 @@ const updateDonor = async (req, res) => {
 };
 
 //NEW DONORS,FUNDRAISERS, GRANTS, DONATIONS
+//NEW DONOR
 const addDonor = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const {
+    imageSrc,
     name,
     email,
     profession,
@@ -245,6 +247,7 @@ const addDonor = async (req, res) => {
   } = req.body;
 
   const newDonor = {
+    imageSrc,
     name,
     email,
     profession,
@@ -272,7 +275,7 @@ const addDonor = async (req, res) => {
   }
   client.close();
 };
-
+//NEW FUNDRAISER
 const addFundraiser = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const {
@@ -312,7 +315,7 @@ const addFundraiser = async (req, res) => {
   }
   client.close();
 };
-
+//NEW GRANT
 const addGrant = async (req, res) => {
   const client = new MongoClient(MONGO_URI, options);
   const { nameOfGrant, grantBody, grantAmount, dueDate } = req.body;
@@ -337,34 +340,6 @@ const addGrant = async (req, res) => {
   } catch (err) {
     console.log(err.message);
     res.status(400).json({
-      status: 400,
-      message: "Error",
-    });
-  }
-  client.close();
-};
-
-const addDonation = async (req, res) => {
-  const client = new MongoClient(MONGO_URI, options);
-  const { donorName, donationDate, donationAmount } = req.body;
-  const newDonation = {
-    _id: uuidv4(),
-    donorName,
-    donationDate,
-    donationEvent,
-  };
-  try {
-    await client.connect();
-    const db = client.db("ArtConnect");
-    await db.collection("Donations").insertOne(newDonation);
-
-    res.status(201).json({
-      status: 201,
-      data: newDonor,
-      message: "donation successfully added",
-    });
-  } catch (err) {
-    rest.status(400).json({
       status: 400,
       message: "Error",
     });
@@ -482,7 +457,6 @@ module.exports = {
   addDonor,
   addFundraiser,
   addGrant,
-  addDonation,
   deleteDonorById,
   deleteDonationById,
   deleteFundraiserById,

@@ -3,17 +3,12 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
 
-
 const DonorDetails = () => {
-
-
   const donorId = useParams().donorId;
   const navigate = useNavigate();
-  
+
   const { setDonorDetail, donorDetail } = useContext(DonorContext);
-
-
-
+  //delete a donor in mongo
   const deleteHandler = () => {
     fetch(`/api/deletedonor/${donorId}`, {
       method: "DELETE",
@@ -31,7 +26,7 @@ const DonorDetails = () => {
         console.log(err);
       });
   };
-
+  //fetch the specific donor's donor details after clicking on their donor card on the donor dashboard
   useEffect(() => {
     fetch(`/api/donordetails/${donorId}`)
       .then((res) => res.json())
@@ -42,11 +37,11 @@ const DonorDetails = () => {
         console.log(err);
       });
   }, [donorId]);
-
+  //if there is no donor info to show, default to loading page
   if (!donorDetail) {
     return <div>loading...</div>;
   }
-
+  //return includes all of the expanded donor information, a button to edit the donor info and a button to delete the donor
   return (
     <>
       <Wrapper>
@@ -54,8 +49,7 @@ const DonorDetails = () => {
           {/* <Address>{`${donorDetail.address}`}</Address> */}
 
           <ProfilePic>
-            <Img src={`${
-              donorDetail.imageSrc}`} />
+            <Img src={`${donorDetail.imageSrc}`} />
           </ProfilePic>
 
           <TextArea>
@@ -70,7 +64,8 @@ const DonorDetails = () => {
                 Location: {`${donorDetail.city ? donorDetail.city : ""}`}
               </City>
               <Profession>
-                Profession: {`${donorDetail.profession ? donorDetail.profession : ""}`}
+                Profession:{" "}
+                {`${donorDetail.profession ? donorDetail.profession : ""}`}
               </Profession>
               <ArtInterest>
                 Area of Interest:
@@ -99,7 +94,7 @@ const DonorDetails = () => {
               >
                 Edit
               </Button>
-              
+
               <Button onClick={deleteHandler}>Delete</Button>
             </ul>
           </TextArea>
@@ -115,13 +110,11 @@ const Wrapper = styled.div`
   align-items: center;
   flex-direction: column;
   justify-items: center;
- 
+
   padding: 4.5em;
 
   flex-wrap: wrap;
   background-color: #f7f5ed;
-
-
 `;
 const ProfilePic = styled.div`
   display: relative;
@@ -145,10 +138,7 @@ const TextArea = styled.div`
   flex-grow: 1;
 `;
 
-
-
 const Button = styled.button`
-
   border: none;
   align-self: flex-end;
   border-radius: 1.5em;
@@ -173,7 +163,6 @@ const Button = styled.button`
 const ProfileName = styled.div`
   font-size: 18px;
   color: black;
-
 `;
 
 const City = styled.div`
@@ -192,15 +181,15 @@ const ArtInterest = styled.div`
 
 const FundraiserAttended = styled.div`
   font-size: 14px;
-  color: black
+  color: black;
 `;
 
 const DonationAmount = styled.div`
   font-size: 14px;
-  color: black
+  color: black;
 `;
 const Profession = styled.div`
- font-size: 14px;
+  font-size: 14px;
   color: black;
 `;
 

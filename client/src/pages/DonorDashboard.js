@@ -5,30 +5,23 @@ import { useContext, useEffect, useParams } from "react";
 import DonorDetails from "./DonorDetails";
 import { useNavigate, Link } from "react-router-dom";
 
-
-
-
-
 export const DonorDash = () => {
   const { donor, setDonor } = useContext(DonorContext);
   const [numDonors, setNumDonors] = useState(6);
   const MAXDONORS = 100;
   const navigate = useNavigate();
-  
 
-
- 
-
+  //set the maximum number of numbers that can be displayed at once and how many can be added at a time
   const handleClick = () => {
     if (numDonors <= MAXDONORS - 6) {
       setNumDonors(numDonors + 6);
     }
   };
-
+  //set up to navigate to the donor details page
   const handleDonorDetail = (url) => {
     navigate(url);
   };
-
+  //fetch all the donors from mongo
   useEffect(() => {
     fetch("/api/donors")
       .then((res) => res.json())
@@ -40,69 +33,19 @@ export const DonorDash = () => {
         console.log(e);
       });
   }, []);
-
+  //if there is no donor info to display, default to loading page
   if (!donor) return <Loading>Loading...</Loading>;
 
   const donorsToShow = donor.slice(0, numDonors);
 
- 
-
-
-
-  ///searchbar function
-
-  // const Typeahead = ({ suggestions, handleSelect }) => {
-  //   const [value, setValue] = useState("");
-  //   const matchedSuggestions = suggestions.filter((suggestion) => {
-  //     return suggestion.name.toLowerCase().includes(value.toLowerCase())
-  //   });
-
-  //   const GetDonorSuggestion = (({ suggestion, categoryIdentity }) => {
-  //     if (!suggestion.toLowerCase().startsWith(value)) {
-  //       return <span>{suggestion}</span>;
-  //     }
-
-  //   const userInputLength = value.length;
-  //   const DonorName = data._id[categoryIdentity].name;
-  //   return (
-  //   <span>
-  //     {suggestion.substring(0, userInputLength)}
-  //     <Prediction>
-  //       {suggestion.substring(userInputLength)}
-  //     </Prediction>
-  //     <DonorDiv> in <DonorSpecific>{DonorName}</DonorSpecific></DonorDiv>
-  //   </span>
-  //   );
-  //   });
-
-
-
-
-  
-
- 
-
+  //return includes all of the donors displayed, a button to view more donors and a button to add a new donor
   return (
     <Wrapper>
       <h1>Donors</h1>
-      {/* <SearchBar>
-        <input
-          type="text"
-          placeholder="search"
-          value={value}
-          onChange={(ev) => setValue(ev.target.value)}
-          />
 
-          
-      </SearchBar> */}
-
-
-
-
-
-      
       <Link to="/newdonor">
-      <ButtonNew>Add a new donor</ButtonNew></Link>
+        <ButtonNew>Add a new donor</ButtonNew>
+      </Link>
       <Div>
         {donorsToShow.map((donors) => {
           return (
@@ -120,31 +63,22 @@ export const DonorDash = () => {
           );
         })}
         <Button onClick={handleClick}>View more donors</Button>
-       
       </Div>
     </Wrapper>
   );
 };
 
-
-
 const Wrapper = styled.div`
   display: flex;
-  
+
   align-items: center;
   flex-direction: column;
   margin: 0px;
   gap: 10px;
   padding: 4em;
-
-  
-  
 `;
 
-const SearchBar = styled.div`
-
-`;
-
+const SearchBar = styled.div``;
 
 const Div = styled.div`
   max-width: 100vw;
@@ -165,7 +99,6 @@ const Img = styled.img`
 `;
 
 const Button = styled.button`
-  
   border: none;
   align-self: flex-end;
   border-radius: 1.5em;
@@ -196,7 +129,7 @@ const ButtonNew = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
- 
+
   top: 2em;
   left: 23em;
   :hover {
@@ -206,7 +139,7 @@ const ButtonNew = styled.button`
     transform: scale(1.08);
     transition: 0.3s;
   }
-`
+`;
 
 const Donors = styled.div`
   display: flex;
@@ -229,12 +162,6 @@ const Donors = styled.div`
     font-weight: bold;
   }
 `;
-
-
-
-
-
-
 
 const Loading = styled.div`
   font-size: 1.5em;
