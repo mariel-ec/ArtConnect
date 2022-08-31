@@ -72,8 +72,7 @@ const DonorDetails = () => {
                 Location: {`${donorDetail.city ? donorDetail.city : ""}`}
               </City>
               <Profession>
-                Profession:{" "}
-                {`${donorDetail.profession ? donorDetail.profession : ""}`}
+                Profession: {`${donorDetail.profession ? donorDetail.profession : ""}`}
               </Profession>
               <ArtInterest>
                 Area of Interest:
@@ -102,6 +101,7 @@ const DonorDetails = () => {
               >
                 Edit
               </Button>
+              
               <Button onClick={deleteHandler}>Delete</Button>
             </ul>
           </TextArea>
@@ -135,6 +135,7 @@ const ProfilePic = styled.div`
 `;
 const Img = styled.img`
   max-height: 250px;
+  min-height: 250px;
   border-radius: 50%;
 `;
 
@@ -156,6 +157,7 @@ const TextArea = styled.div`
 // `;
 
 const Button = styled.button`
+
   border: none;
   align-self: flex-end;
   border-radius: 1.5em;
@@ -165,8 +167,10 @@ const Button = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  bottom: 0.2em;
-  left: 10em;
+  margin-bottom: 1em;
+  top: 3em;
+  bottom: 0em;
+  left: 0em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;
@@ -176,38 +180,37 @@ const Button = styled.button`
   }
 `;
 const ProfileName = styled.div`
-  font-size: 14px;
-  color: darkblue;
+  font-size: 18px;
+  color: black;
+
 `;
 
 const City = styled.div`
   font-size: 14px;
-  color: darkblue;
+  color: black;
 `;
 const Email = styled.div`
   font-size: 14px;
-  color: darkblue;
+  color: beige;
 `;
 
 const ArtInterest = styled.div`
   font-size: 14px;
-  color: darkblue;
+  color: black;
 `;
 
 const FundraiserAttended = styled.div`
   font-size: 14px;
-  color: darkblue;
+  color: black
 `;
 
 const DonationAmount = styled.div`
   font-size: 14px;
-  color: darkblue;
+  color: black
 `;
 const Profession = styled.div`
-  display: flex;
-  position: relative;
-  left: 5em;
-  bottom: 1.7em;
+ font-size: 14px;
+  color: black;
 `;
 
 const Donors = styled.div`

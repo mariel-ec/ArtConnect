@@ -45,6 +45,7 @@ const LeftSide = styled.div`
   padding: 10px;
   gap: 3em;
   flex-grow: 1;
+  
 `;
 
 const LogoContainer = styled.div``;
@@ -61,19 +62,6 @@ const RightSide = styled.div`
   justify-content: right;
   align-items: center;
   padding-right: 50px;
-`;
-const MenuLink = styled.div`
-  color: black;
-  text-decoration: none;
-  max-height: 80px;
-  font-size: 20px;
-  margin-right: 5px;
-
-  :hover {
-    background-color: #e7cac2;
-    opacity: 50%;
-    cursor: pointer;
-  }
 `;
 
 const SearchBar = styled.div`

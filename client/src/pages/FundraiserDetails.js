@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
+import FUNDLOGO from "../images/FUNDLOGO.png";
 
 const FundraiserDetails = () => {
     const fundraiserId = useParams().fundraiserId;
@@ -47,14 +48,19 @@ return (
         <Wrapper>
             <Fundraisers key={fundraiserDetail.o_id}>
               <ul>
-                <NameOfFundraiser>{`${fundraiserDetail.nameOfFundraiser}`}</NameOfFundraiser>
-                <Coordinator>{`${fundraiserDetail.coordinator}`}</Coordinator>
-                <FundraisingGoal>{`${fundraiserDetail.fundraisingGoal}`}</FundraisingGoal>
+                <Img src={FUNDLOGO}/>
+                <NameOfFundraiser>Fundraiser's Name: {`${fundraiserDetail.nameOfFundraiser}`}</NameOfFundraiser>
+                <DateOfFundraiser>Date: {`${fundraiserDetail.dateOfFundraiser}`}</DateOfFundraiser>
+                
+                <Coordinator>Coordinator: {`${fundraiserDetail.coordinator}`}</Coordinator>
+                <FundraisingGoal>Fundraising Goal: {`${fundraiserDetail.fundraisingGoal}`}</FundraisingGoal>
+                <TotalFundraised>Total Fundraised:{`${fundraiserDetail.totalFundraised}`}</TotalFundraised>
           <Button 
             onClick={() => {
               navigate(`/fundraiserdetails/${fundraiserId}/fundraiserform`);
             }}
             >Edit</Button>
+            
             <Button onClick={deleteHandler}> Delete Fundraiser</Button>
           
            </ul>
@@ -93,8 +99,9 @@ const Button = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  bottom: 0.2em;
-  left: 10em;
+ top:4em;
+  left: 4.3em;
+  margin-bottom: 1em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;
@@ -103,6 +110,15 @@ const Button = styled.button`
     transition: 0.3s;
   }
 `;
+
+const Img = styled.img`
+height: 300px;
+display: flex;
+margin-left: 50px;
+margin-top: -20px;
+
+
+`
 
 const Fundraisers = styled.div`
   display: flex;
@@ -113,23 +129,42 @@ const Fundraisers = styled.div`
   height: 40em;
   justify-content: space-between;
   align-items: center;
-  margin-left: 8em;
+  margin-left: 5em;
   flex-direction: column;
 `;
 
 const NameOfFundraiser = styled.div`
-  font-size: 14px;
-  color: darkblue;
+  margin-left: 65px;
+  font-size: 18px;
+  color: black;
 `;
 
+const DateOfFundraiser = styled.div`
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
+`
+const LocationOfFundraiser = styled.div`
+margin-left: 65px;
+  font-size: 18px;
+  color: black
+`
+
 const Coordinator = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black
 `;
 
 const FundraisingGoal = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
 `;
+const TotalFundraised = styled.div`
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
+`
 
 export default FundraiserDetails;

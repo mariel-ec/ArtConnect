@@ -17,8 +17,7 @@ html, body, div, span, applet, object, iframe,
   figure, figcaption, footer, header, hgroup,
   menu, nav, output, ruby, section, summary,
   time, mark, audio, video {
-    /* max-width: 100%; 
-    max-height: 100%;  */
+
   
     margin: 0;
     padding: 0;
@@ -29,4 +28,6 @@ html, body, div, span, applet, object, iframe,
     background-color:  #f7f5ed;
 
 }
+
+
 `;

@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
+import GRANTSLOGO from "../images/GRANTSLOGO.png";
 
 const GrantDetails = () => {
   const grantId = useParams().grantId;
@@ -47,16 +48,17 @@ const GrantDetails = () => {
       <Wrapper>
         <Grant key={grantDetail.o_id}>
           <ul>
-          <NameOfGrant>{`${
+          <Img src={GRANTSLOGO}/>
+          <NameOfGrant>Grant Name:  {`${
             grantDetail.nameOfGrant ? grantDetail.nameOfGrant : ""
             }`}</NameOfGrant>
-          <GrantBody>{`${
+          <GrantBody> Granting Body: {`${
             grantDetail.grantBody ? grantDetail.grantBody : ""
             }`}</GrantBody>
-          <GrantAmount>{`${
+          <GrantAmount>Amount of Grant: {`${
             grantDetail.grantAmount ? grantDetail.grantAmount : ""
             }`}</GrantAmount>
-          <GrantDate>{`${
+          <GrantDate>Grant Deadline:   {`${
             grantDetail.dueDate ? grantDetail.dueDate : ""
             }`}
             </GrantDate> 
@@ -96,12 +98,18 @@ const Grant = styled.div`
   border-radius: 0.8em;
   box-shadow: 0.5em 0.5em 3em 0.5em ghostwhite;
   width: 25em;
-  height: 40em;
+  height: 30em;
   justify-content: space-between;
   align-items: center;
-  margin-left: 8em;
+  margin-left: 5em;
   flex-direction: column;
 `;
+
+const Img = styled.img`
+  max-height: 250px;
+  display: flex;
+  margin-left: 70px;
+`
 
 
 const Button = styled.button`
@@ -114,8 +122,10 @@ const Button = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  bottom: 0.2em;
-  left: 10em;
+  top:2em;
+  
+  left: 4.3em;
+  margin-bottom: 1em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;
@@ -125,22 +135,27 @@ const Button = styled.button`
   }
 `;
 const NameOfGrant = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black
+  
 `;
 
 const GrantBody = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
 `;
 
 const GrantAmount = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
 `;
 const GrantDate = styled.div`
-  font-size: 14px;
-  color: darkblue;
+margin-left: 65px;
+  font-size: 18px;
+  color: black;
 `;
 
 export default GrantDetails;

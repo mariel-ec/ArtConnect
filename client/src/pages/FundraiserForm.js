@@ -33,10 +33,13 @@ const UpdateFundraiser = () => {
 
   return (
     <Wrapper>
-      <div>Edit Fundraiser Information</div>
+      <h1>Edit Fundraiser Information</h1>
 
-      <form onSubmit={submitHandler}>
+      <Form onSubmit={submitHandler}>
+        <ul>
+          <ol>
         <label>Fundraiser Name: </label>
+
         <input
           onChange={(e) => {
             onChangeHandler(e);
@@ -45,7 +48,7 @@ const UpdateFundraiser = () => {
           type="text"
           value={fundraiserDetail.nameOfFundraiser}
         />
-
+        </ol><ol>
         <label>Fundraiser Date</label>
         <input
           onChange={(e) => {
@@ -55,7 +58,7 @@ const UpdateFundraiser = () => {
           type="text"
           value={fundraiserDetail.dateOfFundraiser}
         />
-
+</ol><ol>
         <label>Fundraiser Location </label>
         <input
           onChange={(e) => {
@@ -65,7 +68,7 @@ const UpdateFundraiser = () => {
           type="text"
           value={fundraiserDetail.locationOfFundraiser}
         />
-
+</ol><ol>
         <label>Coordinator</label>
         <input
           onChange={(e) => {
@@ -75,7 +78,7 @@ const UpdateFundraiser = () => {
           type="text"
           value={fundraiserDetail.coordinator}
         />
-
+</ol><ol>
         <label>Fundraising Goal</label>
         <input
           onChange={(e) => {
@@ -85,7 +88,7 @@ const UpdateFundraiser = () => {
           type="text"
           value={fundraiserDetail.fundraisingGoal}
         />
-
+</ol><ol>
         <label>Total Raised</label>
         <input
           onChange={(e) => {
@@ -95,9 +98,10 @@ const UpdateFundraiser = () => {
           type="text"
           placeholder={fundraiserDetail.totalRaised}
         />
-
-        <button type="submit">Update</button>
-      </form>
+</ol>
+        <Button type="submit">Update</Button>
+        </ul>
+      </Form>
     </Wrapper>
   );
 };
@@ -113,6 +117,7 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.form`
+
   width: 90vw;
   padding: 90px;
   display: flex;
@@ -123,20 +128,25 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-  width: 30vh;
-  background-color: green;
-  border: none;
-  border-radius: 20px;
-  height: 30px;
-  width: 500px;
-  font-weight: lighter;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: orange;
-    transition: 0.7s;
+ border: none;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  margin-bottom: 1em;
+  top: 3em;
+  bottom: 0em;
+  left: 0em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
   }
 `;
 

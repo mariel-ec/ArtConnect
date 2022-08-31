@@ -36,11 +36,11 @@ const UpdateDonor = () => {
 
   return (
     <Wrapper>
-      <div>Edit Donor Information</div>
+      <h1>Edit Donor Information</h1>
 
       <Form onSubmit={submitHandler}>
         <ul>
-          <label>Name:</label>
+          <ol><label>Name:</label>
           <input
             onChange={onChangeHandler}
             name="name"
@@ -56,7 +56,8 @@ const UpdateDonor = () => {
             type="text"
             value={donorDetail.city}
           />
-
+          </ol>
+<ol>
           <label>Email: </label>
           <input
             onChange={onChangeHandler}
@@ -71,15 +72,17 @@ const UpdateDonor = () => {
             type="text"
             value={donorDetail.artInterest}
           />
-
+</ol><ol>
           <label>Profession: </label>
           <input
             onChange={onChangeHandler}
             name="profession"
             type="text"
             value={donorDetail.profession}
-          />
+          /></ol>
+          <ol>
           <h3>Most Recent Donation</h3>
+
           <label> Last Fundraiser Attended </label>
           <input
             onChange={onChangeHandler}
@@ -87,6 +90,7 @@ const UpdateDonor = () => {
             type="text"
             value={donorDetail.fundraiserAttended}
           />
+          </ol><ol>
 
           <label> Last Donation Amount ($) </label>
           <input
@@ -95,7 +99,7 @@ const UpdateDonor = () => {
             type="text"
             value={donorDetail.donationAmount}
           />
-
+</ol><ol>
           <label> Last Donation Date </label>
           <input
             onChange={onChangeHandler}
@@ -103,6 +107,7 @@ const UpdateDonor = () => {
             type="text"
             value={donorDetail.donationDate}
           />
+          </ol>
         </ul>
 
         <Button type="submit">Update</Button>
@@ -119,33 +124,45 @@ const Wrapper = styled.div`
   margin-top: 90px;
   padding-top: 80px;
   padding-bottom: 80px;
+ 
 `;
 
 const Form = styled.form`
+
+display: inline-block;
+box-sizing: border-box;
   width: 90vw;
   padding: 90px;
-  display: flex;
-  align-items: left;
-  justify-content: center;
-  border-color: lightgrey;
+  margin-left: 800px;
+ 
+  
+  
+  /* justify-content: center; */
+  
   color: black;
 `;
 
 const Button = styled.button`
-  width: 30vh;
-  background-color: green;
   border: none;
-  border-radius: 20px;
-  height: 30px;
-  width: 500px;
-  font-weight: lighter;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: orange;
-    transition: 0.7s;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  margin-bottom: 1em;
+  top: 3em;
+  bottom: 0em;
+  left: 5em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
+  }
   }
 `;
 

@@ -37,10 +37,11 @@ const UpdateGrant = () => {
 
   return (
     <Wrapper>
-      <div>Edit Grant Information</div>
+      <h1>Edit Grant Information</h1>
 
       <Form onSubmit={submitHandler}>
         <ul>
+          <ol>
           <label>Grant Name</label>
           <input
             onChange={onChangeHandler}
@@ -48,7 +49,8 @@ const UpdateGrant = () => {
             type="text"
             value={grantDetail.nameOfGrant}
           />
-
+          </ol>
+<ol>
           <label>Granting Body</label>
           <input
             onChange={onChangeHandler}
@@ -56,7 +58,7 @@ const UpdateGrant = () => {
             type="text"
             value={grantDetail.grantBody}
           />
-
+</ol><ol>
           <label>Grant Amount $ </label>
           <input
             onChange={onChangeHandler}
@@ -64,7 +66,8 @@ const UpdateGrant = () => {
             type="text"
             value={grantDetail.grantAmount}
           />
-
+          </ol>
+<ol>
           <label>Due by: </label>
           <input
             onChange={onChangeHandler}
@@ -72,6 +75,7 @@ const UpdateGrant = () => {
             type="text"
             value={grantDetail.dueDate}
           />
+          </ol>
         </ul>
         <Button type="submit">Update</Button>
       </Form>
@@ -83,7 +87,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 4.5em;
   margin-top: 90px;
   padding-top: 80px;
   padding-bottom: 80px;
@@ -93,6 +97,7 @@ const Form = styled.form`
   width: 90vw;
   padding: 90px;
   display: flex;
+  margin-left: 290px;
   align-items: left;
   justify-content: center;
   border-color: lightgrey;
@@ -100,20 +105,25 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-  width: 30vh;
-  background-color: green;
-  border: none;
-  border-radius: 20px;
-  height: 30px;
-  width: 500px;
-  font-weight: lighter;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: orange;
-    transition: 0.7s;
+border: none;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  margin-bottom: 1em;
+  top: 6em;
+  bottom: 0em;
+  left: -20em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
   }
 `;
 
