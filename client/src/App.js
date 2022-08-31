@@ -26,7 +26,7 @@ const App = () => {
     <div className="app">
       <BrowserRouter>
         <Globalstyles />
-
+   
         {window.location.pathname !== "/" && <Nav />}
         <Routes>
           <Route exact path="/" element={<HomePage />} />
