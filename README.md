@@ -1,6 +1,6 @@
 Final Project - Concordia Bootcamps, August 2022
 React.js, Node.js, Express, MongoDb Atlas
-API: mockoon 
+API: mockaroo 
 
 
 *Description*
