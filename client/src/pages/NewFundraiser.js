@@ -3,7 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const AddFundraiser = () => {
-    const { fundraiserId } = useParams;
+   
     const [fundraiserData, setFundraiserData] = useState({});
     const navigate = useNavigate();
     const onChangeHandler = (e) => {
@@ -42,6 +42,7 @@ const AddFundraiser = () => {
             }}
             name="nameOfFundraiser"
             type="text"
+            value={fundraiserData.nameOfFundraiser}
   
           />
   
@@ -52,6 +53,7 @@ const AddFundraiser = () => {
             }}
             name="dateOfFundraiser"
             type="text"
+            value={fundraiserData.dateOfFundraiser}
         
           />
   
@@ -62,6 +64,7 @@ const AddFundraiser = () => {
             }}
             name="locationOfFundraiser"
             type="text"
+            value={fundraiserData.locationOfFundraiser}
      
           />
   
@@ -72,6 +75,7 @@ const AddFundraiser = () => {
             }}
             name="coordinator"
             type="text"
+            value={fundraiserData.coordinator}
 
           />
 
@@ -82,6 +86,7 @@ const AddFundraiser = () => {
             }}
             name="fundraisingGoal"
             type="text"
+            value={fundraiserData.fundraisingGoal}
 
           
           />
@@ -91,7 +96,7 @@ const AddFundraiser = () => {
 
 
                 </ul>
-                <Button>Add ! </Button> 
+                <Button type="submit">Add ! </Button> 
             </Form>
 
 
@@ -118,7 +123,7 @@ const Wrapper = styled.div`
   padding-bottom: 80px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 90vw;
   padding: 90px;
   display: flex;

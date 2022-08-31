@@ -129,7 +129,7 @@ const Wrapper = styled.div`
   padding-bottom: 80px;
 `;
 
-const Form = styled.div`
+const Form = styled.form`
   width: 90vw;
   padding: 90px;
   display: flex;

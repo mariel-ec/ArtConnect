@@ -5,10 +5,10 @@ import React, { useContext, useEffect, useParams } from "react";
 import Nav from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 
-import DonorDashboard from "./pages/DonorDashboard"
-import DonorDetails from "./pages/DonorDetails"
-import UpdateDonor from "./pages/DonorForm"
-import NewDonor from "./pages/DonorForm"
+import DonorDashboard from "./pages/DonorDashboard";
+import DonorDetails from "./pages/DonorDetails";
+import UpdateDonor from "./pages/DonorForm";
+import NewDonor from "./pages/NewDonor";
 
 import FundraiserDashboard from "./pages/FundraiserDashboard";
 import FundraiserDetails from "./pages/FundraiserDetails";

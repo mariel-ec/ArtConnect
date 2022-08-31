@@ -147,6 +147,7 @@ const updateFundraiser = async (req, res) => {
     totalFundraised,
     _id,
   } = req.body;
+  console.log(req.body);
   const query = { _id: ObjectId(_id) };
   const fundraiser = await db.collection("Fundraisers").findOne(query);
   const newValues = {
@@ -171,7 +172,7 @@ const updateFundraiser = async (req, res) => {
         : fundraiser.totalFundraised,
     },
   };
-  const result = await db.collection("Grants").updateOne(query, newValues);
+  const result = await db.collection("Fundraisers").updateOne(query, newValues);
 
   console.log(result);
   result
@@ -299,11 +300,12 @@ const addFundraiser = async (req, res) => {
 
     res.status(201).json({
       status: 201,
-      data: newDonor,
+      data: newFundraiser,
       message: "fundraiser successfully added",
     });
   } catch (err) {
-    rest.status(400).json({
+    console.log(err.message);
+    res.status(400).json({
       status: 400,
       message: "Error",
     });

@@ -9,7 +9,7 @@ const FundraiserDetails = () => {
     const navigate = useNavigate();
 
   const deleteHandler = () => {
-    fetch(`api/deletefundraiser/${fundraiserId}`, {
+    fetch(`/api/deletefundraiser/${fundraiserId}`, {
       method: "DELETE",
     })
     .then((res) => res.json())

@@ -67,7 +67,7 @@ const UpdateDonor = () => {
           <label>Area of Interest (Art): </label>
           <input
             onChange={onChangeHandler}
-            name="Art Interest"
+            name="artInterests"
             type="text"
             value={donorDetail.artInterest}
           />
@@ -75,7 +75,7 @@ const UpdateDonor = () => {
           <label>Profession: </label>
           <input
             onChange={onChangeHandler}
-            name="Profession"
+            name="profession"
             type="text"
             value={donorDetail.profession}
           />
@@ -83,7 +83,7 @@ const UpdateDonor = () => {
           <label> Last Fundraiser Attended </label>
           <input
             onChange={onChangeHandler}
-            name="artInterest"
+            name="fundraiserAttended"
             type="text"
             value={donorDetail.fundraiserAttended}
           />
