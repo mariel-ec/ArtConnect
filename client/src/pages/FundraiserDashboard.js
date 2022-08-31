@@ -3,18 +3,18 @@ import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 import Nav from "../components/NavBar";
-import FundLogo from "../images/dummyprofilepic/FundLogo.png"
-// import FundraiserDetailrs from "./FundraiserDetails";
+import FundLogo from "../images/dummyprofilepic/FundLogo.png";
 
 export const FundraiserDash = () => {
   const { fundraiser, setFundraiser } = useContext(DonorContext);
 
   const navigate = useNavigate();
 
+  //to navigate to fundraiser detail page when fundraiser card is selected
   const handleFundraiserDetail = (url) => {
     navigate(url);
   };
-
+  //fetch all fundraisers from mongo
   useEffect(() => {
     fetch("/api/fundraisers")
       .then((res) => res.json())
@@ -26,19 +26,16 @@ export const FundraiserDash = () => {
         console.log(e);
       });
   }, []);
-
+  //if no fundraiser information is available, default to loading
   if (!fundraiser) return <Loading>Loading...</Loading>;
-
-  // const fundraisersToShow = fundraiser.slice();
-
+  //return includes all of the fundraiser cards, button to add new fundraiser
   return (
-
     <Wrapper>
       <h1>Fundraisers</h1>
       <Link to="/newfundraiser">
-      <ButtonNew>Add a new fundraiser</ButtonNew></Link>
-      
-      
+        <ButtonNew>Add a new fundraiser</ButtonNew>
+      </Link>
+
       <Div>
         {fundraiser.map((fundraisers) => {
           return (
@@ -50,23 +47,25 @@ export const FundraiserDash = () => {
                 );
               }}
             >
-              
               <DetailDiv>
-              <Img src={FundLogo} />
-              <NameOfFundraiser>{`${fundraisers.nameOfFundraiser}`}</NameOfFundraiser>
-              <Coordinator>{`${fundraisers.coordinator}`}</Coordinator>
-              <LocationDate>{`${fundraisers.locationOfFundraiser}`}, {`${fundraisers.dateOfFundraiser}`}</LocationDate>
+                <Img src={FundLogo} />
+                <NameOfFundraiser>{`${fundraisers.nameOfFundraiser}`}</NameOfFundraiser>
+                <Coordinator>{`${fundraisers.coordinator}`}</Coordinator>
+                <LocationDate>
+                  {`${fundraisers.locationOfFundraiser}`},{" "}
+                  {`${fundraisers.dateOfFundraiser}`}
+                </LocationDate>
               </DetailDiv>
             </Fundraisers>
-            
           );
         })}
       </Div>
     </Wrapper>
   );
 };
+
 const Wrapper = styled.div`
-   display: flex;
+  display: flex;
   align-items: center;
   flex-direction: column;
   margin: 0%;
@@ -85,18 +84,17 @@ const Div = styled.div`
   padding: 5em;
   gap: 2em;
   flex-grow: 1;
-  
 `;
 
 const DetailDiv = styled.div`
-color: black;
+  color: black;
   flex: 30%;
-    display: flex;
-   padding-left: 5vh;
-   padding-right: 5vh;
-    align-items: center;
-    background-color: white;
-`
+  display: flex;
+  padding-left: 5vh;
+  padding-right: 5vh;
+  align-items: center;
+  background-color: white;
+`;
 
 const Fundraisers = styled.div`
   display: inline-flex;
@@ -111,8 +109,6 @@ const Fundraisers = styled.div`
   background-color: white;
   :hover {
     cursor: pointer;
-  
-
     color: black;
     transition: 0.5s;
     transform: scale3d(1.2, 1.2, 1);
@@ -121,14 +117,12 @@ const Fundraisers = styled.div`
 `;
 
 const Img = styled.img`
-position: left;
-max-height: 50px;
-padding-left: 10vh;
-padding-right: 10vh;
-background-color: white;
-
-
-`
+  position: left;
+  max-height: 50px;
+  padding-left: 10vh;
+  padding-right: 10vh;
+  background-color: white;
+`;
 const NameOfFundraiser = styled.div`
   bottom: 15vh;
   padding-left: 5vh;
@@ -145,10 +139,10 @@ const LocationDate = styled.div`
   color: #a10a0a;
   padding-top: 1em;
   background-color: white;
-`
+`;
 
 const Coordinator = styled.div`
-   bottom: 15vh;
+  bottom: 15vh;
   padding-left: 5vh;
   padding-right: 5vh;
   color: #a10a0a;
@@ -175,9 +169,7 @@ const ButtonNew = styled.button`
     transform: scale(1.08);
     transition: 0.3s;
   }
-`
-
-
+`;
 
 const Loading = styled.div`
   font-size: 1.5em;

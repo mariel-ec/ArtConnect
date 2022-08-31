@@ -8,8 +8,7 @@ const UpdateDonor = () => {
 
   const { donorId } = useParams();
 
-  // const [donorData, setDonorData] = useState({});
-
+  //navigate back to donor detail page once new donor has been created
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setDonorDetail({
@@ -17,7 +16,7 @@ const UpdateDonor = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  //submit donor updated information to MongoDB and give it a unique user id
   const submitHandler = (e) => {
     const updatedInfo = { ...donorDetail, _id: donorId };
     e.preventDefault();
@@ -33,80 +32,84 @@ const UpdateDonor = () => {
         }
       });
   };
-
+  //return includes the inputs for all the donor information, populated with the donor details and a button to submit the changes to mongo
   return (
     <Wrapper>
       <h1>Edit Donor Information</h1>
 
       <Form onSubmit={submitHandler}>
         <ul>
-          <ol><label>Name:</label>
-          <input
-            onChange={onChangeHandler}
-            name="name"
-            type="text"
-            value={donorDetail.name}
-            // placeholder={donorDetail.name}
-          />
-
-          <label>City:</label>
-          <input
-            onChange={onChangeHandler}
-            name="city"
-            type="text"
-            value={donorDetail.city}
-          />
-          </ol>
-<ol>
-          <label>Email: </label>
-          <input
-            onChange={onChangeHandler}
-            name="email"
-            type="text"
-            value={donorDetail.email}
-          />
-          <label>Area of Interest (Art): </label>
-          <input
-            onChange={onChangeHandler}
-            name="artInterests"
-            type="text"
-            value={donorDetail.artInterest}
-          />
-</ol><ol>
-          <label>Profession: </label>
-          <input
-            onChange={onChangeHandler}
-            name="profession"
-            type="text"
-            value={donorDetail.profession}
-          /></ol>
           <ol>
-          <h3>Most Recent Donation</h3>
+            <label>Name:</label>
+            <input
+              onChange={onChangeHandler}
+              name="name"
+              type="text"
+              value={donorDetail.name}
+              // placeholder={donorDetail.name}
+            />
 
-          <label> Last Fundraiser Attended </label>
-          <input
-            onChange={onChangeHandler}
-            name="fundraiserAttended"
-            type="text"
-            value={donorDetail.fundraiserAttended}
-          />
-          </ol><ol>
+            <label>City:</label>
+            <input
+              onChange={onChangeHandler}
+              name="city"
+              type="text"
+              value={donorDetail.city}
+            />
+          </ol>
+          <ol>
+            <label>Email: </label>
+            <input
+              onChange={onChangeHandler}
+              name="email"
+              type="text"
+              value={donorDetail.email}
+            />
+            <label>Area of Interest (Art): </label>
+            <input
+              onChange={onChangeHandler}
+              name="artInterests"
+              type="text"
+              value={donorDetail.artInterest}
+            />
+          </ol>
+          <ol>
+            <label>Profession: </label>
+            <input
+              onChange={onChangeHandler}
+              name="profession"
+              type="text"
+              value={donorDetail.profession}
+            />
+          </ol>
+          <ol>
+            <h3>Most Recent Donation</h3>
 
-          <label> Last Donation Amount ($) </label>
-          <input
-            onChange={onChangeHandler}
-            name="donationAmount"
-            type="text"
-            value={donorDetail.donationAmount}
-          />
-</ol><ol>
-          <label> Last Donation Date </label>
-          <input
-            onChange={onChangeHandler}
-            name="donationDate"
-            type="text"
-            value={donorDetail.donationDate}
-          />
+            <label> Last Fundraiser Attended </label>
+            <input
+              onChange={onChangeHandler}
+              name="fundraiserAttended"
+              type="text"
+              value={donorDetail.fundraiserAttended}
+            />
+          </ol>
+          <ol>
+            <label> Last Donation Amount ($) </label>
+            <input
+              onChange={onChangeHandler}
+              name="donationAmount"
+              type="text"
+              value={donorDetail.donationAmount}
+            />
+          </ol>
+          <ol>
+            <label> Last Donation Date </label>
+            <input
+              onChange={onChangeHandler}
+              name="donationDate"
+              type="text"
+              value={donorDetail.donationDate}
+            />
           </ol>
         </ul>
 
@@ -124,21 +127,14 @@ const Wrapper = styled.div`
   margin-top: 90px;
   padding-top: 80px;
   padding-bottom: 80px;
- 
 `;
 
 const Form = styled.form`
-
-display: inline-block;
-box-sizing: border-box;
+  display: inline-block;
+  box-sizing: border-box;
   width: 90vw;
   padding: 90px;
   margin-left: 800px;
- 
-  
-  
-  /* justify-content: center; */
-  
   color: black;
 `;
 
@@ -163,7 +159,6 @@ const Button = styled.button`
     transform: scale(1.08);
     transition: 0.3s;
   }
-  
 `;
 
 export default UpdateDonor;

@@ -14,7 +14,7 @@ const AddDonor = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  //submit new donor info to mongodb
   const submitHandler = (e) => {
     e.preventDefault();
     fetch(`/api/newdonor`, {
@@ -29,7 +29,7 @@ const AddDonor = () => {
         }
       });
   };
-
+  //return includes form for all new donor info, button to send details to mongo
   return (
     <Wrapper>
       <h1>New Donor Information</h1>
@@ -38,7 +38,8 @@ const AddDonor = () => {
         <ul>
           <ol>
             <label>Upload Profile Image: </label>
-            </ol><ol>
+          </ol>
+          <ol>
             <input
               type="file"
               onChange={(event) => {
