@@ -163,7 +163,7 @@ const Button = styled.button`
     transform: scale(1.08);
     transition: 0.3s;
   }
-  }
+  
 `;
 
 export default UpdateDonor;

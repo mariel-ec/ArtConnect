@@ -38,68 +38,73 @@ const UpdateFundraiser = () => {
       <Form onSubmit={submitHandler}>
         <ul>
           <ol>
-        <label>Fundraiser Name: </label>
+            <label>Fundraiser Name: </label>
 
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="nameOfFundraiser"
-          type="text"
-          value={fundraiserDetail.nameOfFundraiser}
-        />
-        </ol><ol>
-        <label>Fundraiser Date</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="dateOfFundraiser"
-          type="text"
-          value={fundraiserDetail.dateOfFundraiser}
-        />
-</ol><ol>
-        <label>Fundraiser Location </label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="locationOfFundraiser"
-          type="text"
-          value={fundraiserDetail.locationOfFundraiser}
-        />
-</ol><ol>
-        <label>Coordinator</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="coordinator"
-          type="text"
-          value={fundraiserDetail.coordinator}
-        />
-</ol><ol>
-        <label>Fundraising Goal</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="fundraisingGoal"
-          type="text"
-          value={fundraiserDetail.fundraisingGoal}
-        />
-</ol><ol>
-        <label>Total Raised</label>
-        <input
-          onChange={(e) => {
-            onChangeHandler(e);
-          }}
-          name="totalRaised"
-          type="text"
-          placeholder={fundraiserDetail.totalRaised}
-        />
-</ol>
-        <Button type="submit">Update</Button>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="nameOfFundraiser"
+              type="text"
+              value={fundraiserDetail.nameOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Fundraiser Date</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="dateOfFundraiser"
+              type="text"
+              value={fundraiserDetail.dateOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Fundraiser Location </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="locationOfFundraiser"
+              type="text"
+              value={fundraiserDetail.locationOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Coordinator</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="coordinator"
+              type="text"
+              value={fundraiserDetail.coordinator}
+            />
+          </ol>
+          <ol>
+            <label>Fundraising Goal</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="fundraisingGoal"
+              type="text"
+              value={fundraiserDetail.fundraisingGoal}
+            />
+          </ol>
+          <ol>
+            <label>Total Raised</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="totalRaised"
+              type="text"
+              placeholder={fundraiserDetail.totalRaised}
+            />
+          </ol>
+          <Button type="submit">Update</Button>
         </ul>
       </Form>
     </Wrapper>
@@ -117,7 +122,6 @@ const Wrapper = styled.div`
 `;
 
 const Form = styled.form`
-
   width: 90vw;
   padding: 90px;
   display: flex;
@@ -128,7 +132,7 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
- border: none;
+  border: none;
   align-self: flex-end;
   border-radius: 1.5em;
   width: 20em;

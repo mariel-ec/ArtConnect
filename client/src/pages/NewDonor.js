@@ -29,88 +29,98 @@ const AddDonor = () => {
 
   return (
     <Wrapper>
-      <div>New Donor Information</div>
+      <h1>New Donor Information</h1>
 
       <Form onSubmit={submitHandler}>
         <ul>
-          <label>Name:</label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="name"
-            type="text"
-            value={newDonor.name}
-          />
+          <ol>
+            <label>Name:</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="name"
+              type="text"
+              value={newDonor.name}
+            />
 
-          <label>City:</label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="city"
-            type="text"
-            value={newDonor.city}
-          />
-
-          <label>Email: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="email"
-            type="text"
-            value={newDonor.email}
-          />
-          <label>Area of Interest (Art): </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="artInterests"
-            type="text"
-            value={newDonor.artInterests}
-          />
-
-          <label>Profession: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="profession"
-            type="text"
-            value={newDonor.profession}
-          />
+            <label>City:</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="city"
+              type="text"
+              value={newDonor.city}
+            />
+          </ol>
+          <ol>
+            <label>Email: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="email"
+              type="text"
+              value={newDonor.email}
+            />
+          </ol>
+          <ol>
+            <label>Area of Interest (Art): </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="artInterests"
+              type="text"
+              value={newDonor.artInterests}
+            />
+          </ol>
+          <ol>
+            <label>Profession: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="profession"
+              type="text"
+              value={newDonor.profession}
+            />
+          </ol>
           <h3>Most Recent Donation</h3>
-          <label> Last Fundraiser Attended </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="fundraiserAttended"
-            type="text"
-            value={newDonor.fundraiserAttended}
-          />
-
-          <label> Last Donation Amount ($) </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="donationAmount"
-            type="text"
-            value={newDonor.donationAmount}
-          />
-
-          <label> Last Donation Date </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="donationDate"
-            type="text"
-            value={newDonor.donationDate}
-          />
+          <ol>
+            <label> Last Fundraiser Attended </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="fundraiserAttended"
+              type="text"
+              value={newDonor.fundraiserAttended}
+            />
+          </ol>
+          <ol>
+            <label> Last Donation Amount ($) </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="donationAmount"
+              type="text"
+              value={newDonor.donationAmount}
+            />
+          </ol>
+          <ol>
+            <label> Last Donation Date </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="donationDate"
+              type="text"
+              value={newDonor.donationDate}
+            />
+          </ol>
         </ul>
 
         <Button>Add !</Button>
@@ -137,23 +147,29 @@ const Form = styled.form`
   justify-content: center;
   border-color: lightgrey;
   color: black;
+  margin-left: 340px;
 `;
 
 const Button = styled.button`
-  width: 30vh;
-  background-color: green;
   border: none;
-  border-radius: 20px;
-  height: 30px;
-  width: 500px;
-  font-weight: lighter;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: orange;
-    transition: 0.7s;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  margin-bottom: 1em;
+  top: 7em;
+  bottom: em;
+  left: -25em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
   }
 `;
 
