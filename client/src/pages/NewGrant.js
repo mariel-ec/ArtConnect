@@ -14,7 +14,7 @@ const AddGrant = () => {
   };
 
   const submitHandler = (e) => {
-    console.log("submit")
+    console.log("submit");
     e.preventDefault();
     fetch(`/api/newgrant`, {
       headers: { "Content-Type": "application/json" },
@@ -31,45 +31,50 @@ const AddGrant = () => {
 
   return (
     <Wrapper>
-      <div>New Grant Information</div>
+      <h1>New Grant Information</h1>
 
       <Form onSubmit={submitHandler}>
         <ul>
-          <label>Grant Name</label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="nameOfGrant"
-            type="text"
-          />
-
-          <label>Granting Body</label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="grantBody"
-            type="text"
-          />
-
-          <label>Grant Amount $ </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="grantAmount"
-            type="text"
-          />
-
-          <label>Due by: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="dueDate"
-            type="text"
-          />
+          <ol>
+            <label>Grant Name</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="nameOfGrant"
+              type="text"
+            />
+          </ol>
+          <ol>
+            <label>Granting Body</label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="grantBody"
+              type="text"
+            />
+          </ol>
+          <ol>
+            <label>Grant Amount $ </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="grantAmount"
+              type="text"
+            />
+          </ol>
+          <ol>
+            <label>Due by: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="dueDate"
+              type="text"
+            />
+          </ol>
         </ul>
         <Button type="submit"> Add !</Button>
       </Form>
@@ -95,23 +100,29 @@ const Form = styled.form`
   justify-content: center;
   border-color: lightgrey;
   color: black;
+  margin-left: 300px;
 `;
 
 const Button = styled.button`
-  width: 30vh;
-  background-color: green;
   border: none;
-  border-radius: 20px;
-  height: 30px;
-  width: 500px;
-  font-weight: lighter;
-  font-size: 18px;
-  color: white;
-  cursor: pointer;
-  margin-top: 10px;
-  &:hover {
-    background-color: orange;
-    transition: 0.7s;
+  align-self: flex-end;
+  border-radius: 1.5em;
+  width: 20em;
+  height: 2.8em;
+  font-size: 0.9em;
+  background-color: #959595;
+  color: black;
+  position: relative;
+  margin-bottom: 1em;
+  top: 6em;
+  bottom: 0em;
+  left: -20em;
+  :hover {
+    cursor: pointer;
+    background: #aaaaaa;
+    color: black;
+    transform: scale(1.08);
+    transition: 0.3s;
   }
 `;
 
