@@ -20,7 +20,7 @@ const UpdateGrant = () => {
 
   const submitHandler = (e) => {
     const updatedInfo = { ...grantDetail, _id: grantId };
-
+    //send all info of updated grant information to mongo
     e.preventDefault();
     fetch(`/api/updateGrant`, {
       headers: { "Content-Type": "application/json" },
@@ -42,39 +42,40 @@ const UpdateGrant = () => {
       <Form onSubmit={submitHandler}>
         <ul>
           <ol>
-          <label>Grant Name</label>
-          <input
-            onChange={onChangeHandler}
-            name="nameOfGrant"
-            type="text"
-            value={grantDetail.nameOfGrant}
-          />
+            <label>Grant Name</label>
+            <input
+              onChange={onChangeHandler}
+              name="nameOfGrant"
+              type="text"
+              value={grantDetail.nameOfGrant}
+            />
           </ol>
-<ol>
-          <label>Granting Body</label>
-          <input
-            onChange={onChangeHandler}
-            name="grantBody"
-            type="text"
-            value={grantDetail.grantBody}
-          />
-</ol><ol>
-          <label>Grant Amount $ </label>
-          <input
-            onChange={onChangeHandler}
-            name="grantAmount"
-            type="text"
-            value={grantDetail.grantAmount}
-          />
+          <ol>
+            <label>Granting Body</label>
+            <input
+              onChange={onChangeHandler}
+              name="grantBody"
+              type="text"
+              value={grantDetail.grantBody}
+            />
           </ol>
-<ol>
-          <label>Due by: </label>
-          <input
-            onChange={onChangeHandler}
-            name="dueDate"
-            type="text"
-            value={grantDetail.dueDate}
-          />
+          <ol>
+            <label>Grant Amount $ </label>
+            <input
+              onChange={onChangeHandler}
+              name="grantAmount"
+              type="text"
+              value={grantDetail.grantAmount}
+            />
+          </ol>
+          <ol>
+            <label>Due by: </label>
+            <input
+              onChange={onChangeHandler}
+              name="dueDate"
+              type="text"
+              value={grantDetail.dueDate}
+            />
           </ol>
         </ul>
         <Button type="submit">Update</Button>
@@ -105,7 +106,7 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-border: none;
+  border: none;
   align-self: flex-end;
   border-radius: 1.5em;
   width: 20em;

@@ -5,85 +5,88 @@ import DonorContext from "../DonorContext";
 import FUNDLOGO from "../images/FUNDLOGO.png";
 
 const FundraiserDetails = () => {
-    const fundraiserId = useParams().fundraiserId;
-    const { setFundraiserDetail, fundraiserDetail} = useContext(DonorContext);
-    const navigate = useNavigate();
+  const fundraiserId = useParams().fundraiserId;
+  const { setFundraiserDetail, fundraiserDetail } = useContext(DonorContext);
+  const navigate = useNavigate();
 
+  //send any deleted information to mongo
   const deleteHandler = () => {
     fetch(`/api/deletefundraiser/${fundraiserId}`, {
       method: "DELETE",
     })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.status === 200) {
-        window.alert("Fundraiser deleted !");
-        setTimeout(() => {
-          navigate("/fundraisers");
-        }, 2000)
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          window.alert("Fundraiser deleted !");
+          setTimeout(() => {
+            navigate("/fundraisers");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
+  //call up details of the fundraiser selected on the dashboard
+  useEffect(() => {
+    fetch(`/api/fundraiserdetails/${fundraiserId}`)
+      .then((res) => res.json())
+      .then((data) => {
+        setFundraiserDetail(data.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [fundraiserId]);
 
-    useEffect(() => {
-        fetch(`/api/fundraiserdetails/${ fundraiserId }`)
-        .then((res) => res.json())
-        .then((data) => {
-            setFundraiserDetail(data.data);
-        })
-        .catch((err) => {
-            console.log(err);
-        })
-    }, [fundraiserId]);
-
-    if (!fundraiserDetail) {
-        return <div>loading...</div> ;
-    }
-
-return (
+  //default to loading if no fundraiser data can be called
+  if (!fundraiserDetail) {
+    return <div>loading...</div>;
+  }
+  //return include fundraiser details, button to edit fundraiser and delete it
+  return (
     <>
-        <Wrapper>
-            <Fundraisers key={fundraiserDetail.o_id}>
-              <ul>
-                <Img src={FUNDLOGO}/>
-                <NameOfFundraiser>Fundraiser's Name: {`${fundraiserDetail.nameOfFundraiser}`}</NameOfFundraiser>
-                <DateOfFundraiser>Date: {`${fundraiserDetail.dateOfFundraiser}`}</DateOfFundraiser>
-                
-                <Coordinator>Coordinator: {`${fundraiserDetail.coordinator}`}</Coordinator>
-                <FundraisingGoal>Fundraising Goal: {`${fundraiserDetail.fundraisingGoal}`}</FundraisingGoal>
-                
-          <Button 
-            onClick={() => {
-              navigate(`/fundraiserdetails/${fundraiserId}/fundraiserform`);
-            }}
-            >Edit</Button>
-            
+      <Wrapper>
+        <Fundraisers key={fundraiserDetail.o_id}>
+          <ul>
+            <Img src={FUNDLOGO} />
+            <NameOfFundraiser>
+              Fundraiser's Name: {`${fundraiserDetail.nameOfFundraiser}`}
+            </NameOfFundraiser>
+            <DateOfFundraiser>
+              Date: {`${fundraiserDetail.dateOfFundraiser}`}
+            </DateOfFundraiser>
+
+            <Coordinator>
+              Coordinator: {`${fundraiserDetail.coordinator}`}
+            </Coordinator>
+            <FundraisingGoal>
+              Fundraising Goal: {`${fundraiserDetail.fundraisingGoal}`}
+            </FundraisingGoal>
+
+            <Button
+              onClick={() => {
+                navigate(`/fundraiserdetails/${fundraiserId}/fundraiserform`);
+              }}
+            >
+              Edit
+            </Button>
+
             <Button onClick={deleteHandler}> Delete Fundraiser</Button>
-          
-           </ul>
-            </Fundraisers>
-        </Wrapper>
-    
+          </ul>
+        </Fundraisers>
+      </Wrapper>
     </>
-
-);
-
-
-
+  );
 };
 
 const Wrapper = styled.div`
   display: flex;
-  /* font-family: var(--body-font); */
   align-items: center;
   flex-direction: column;
   justify-items: center;
-  /* margin-left: 30em;
-  margin-top: 1em; */
-  /* width: 50em; */
+
   padding: 4.5em;
 
   flex-wrap: wrap;
@@ -99,7 +102,7 @@ const Button = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
- top:4em;
+  top: 4em;
   left: 4.3em;
   margin-bottom: 1em;
   :hover {
@@ -112,13 +115,11 @@ const Button = styled.button`
 `;
 
 const Img = styled.img`
-height: 300px;
-display: flex;
-margin-left: 50px;
-margin-top: -20px;
-
-
-`
+  height: 300px;
+  display: flex;
+  margin-left: 50px;
+  margin-top: -20px;
+`;
 
 const Fundraisers = styled.div`
   display: flex;
@@ -140,31 +141,31 @@ const NameOfFundraiser = styled.div`
 `;
 
 const DateOfFundraiser = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
-`
+`;
 const LocationOfFundraiser = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
-  color: black
-`
+  color: black;
+`;
 
 const Coordinator = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
-  color: black
+  color: black;
 `;
 
 const FundraisingGoal = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
 `;
 const TotalFundraised = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
-`
+`;
 
 export default FundraiserDetails;

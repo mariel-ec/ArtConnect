@@ -6,7 +6,6 @@ import DonorContext from "../DonorContext";
 const UpdateFundraiser = () => {
   const { fundraiserId } = useParams();
   const { fundraiserDetail, setFundraiserDetail } = useContext(DonorContext);
-  // const [fundraiserData, setFundraiserData] = useState({});
   const navigate = useNavigate();
   const onChangeHandler = (e) => {
     setFundraiserDetail({
@@ -14,7 +13,7 @@ const UpdateFundraiser = () => {
       [e.target.name]: e.target.value,
     });
   };
-
+  //send all updated fundraiser info to mongo
   const submitHandler = (e) => {
     const updatedInfo = { ...fundraiserDetail, _id: fundraiserId };
     e.preventDefault();
@@ -30,7 +29,7 @@ const UpdateFundraiser = () => {
         }
       });
   };
-
+  //return includes all form inputs for a new fundraiser, button to submit information to mongo
   return (
     <Wrapper>
       <h1>Edit Fundraiser Information</h1>

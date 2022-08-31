@@ -28,6 +28,4 @@ html, body, div, span, applet, object, iframe,
     background-color:  #f7f5ed;
 
 }
-
-
 `;

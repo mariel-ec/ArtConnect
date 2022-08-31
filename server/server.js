@@ -19,11 +19,9 @@ const {
   addDonor,
   addFundraiser,
   addGrant,
-  addDonation,
   deleteDonorById,
   deleteFundraiserById,
   deleteGrantById,
-  deleteDonationById,
 } = require("./handlers");
 
 app.use(morgan("tiny"));
@@ -52,8 +50,6 @@ app.get("/api/grantdetails/:grantId", getGrantById);
 app.patch("/api/updategrant", updateGrant);
 app.post("/api/newgrant", addGrant);
 app.delete("/api/deletegrant/:grantId", deleteGrantById);
-
-//donations
 
 app.get("*", (req, res) => {
   res.status(404).json({

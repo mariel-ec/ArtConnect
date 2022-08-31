@@ -5,22 +5,6 @@ import ACLogo from "../images/ACLogo.png";
 import { useState } from "react";
 
 const Nav = () => {
-
-//searchbar
-
-// const handleSubmit = () => {
-//   fetch(`/api/searchterm?searchTerm=${searchTerm}`)
-//     .then((res) => res.json())
-//     .then((data) => {
-      
-//       receiveSearchItemInfoFromServer(data.data);
-//       history.push("/search/search");
-//     });
-// };
-
-
-
-
   return (
     <Wrapper>
       <LeftSide>
@@ -34,18 +18,7 @@ const Nav = () => {
         <NavLink to="/grants"> Grants </NavLink>
       </LeftSide>
 
-      <RightSide>
-        {/* <SearchBar>
-          <Input 
-          type="text" 
-          placeholder="search..." */}
-          {/* // value={searchTerm}
-          // onChange={handleSearchChange}
-          // onKeyDown={(ev) => handleKeyDown(ev)} />
-          /> */}
-          {/* <Button onClick={handleSubmit}>🔍︎</Button> */}
-        {/* </SearchBar> */}
-      </RightSide>
+      <RightSide></RightSide>
     </Wrapper>
   );
 };
@@ -67,7 +40,6 @@ const LeftSide = styled.div`
   padding: 10px;
   gap: 3em;
   flex-grow: 1;
-  
 `;
 
 const LogoContainer = styled.div``;

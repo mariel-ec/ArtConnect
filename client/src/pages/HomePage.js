@@ -10,13 +10,17 @@ import FUNDLOGO from "../images/FUNDLOGO.png";
 import GRANTSLOGO from "../images/GRANTSLOGO.png";
 
 const HomePage = () => {
+  //return includes the organizations logo and 3 buttons(donors, fundraisers and grants) to navigate to the three
+  //main sections of the website.
   return (
     <ItemsDiv>
       <LogoDiv>
         <Img src={ACLogo} alt="ArtConnectLogo" />
       </LogoDiv>
 
-      <h3><em>Creating community through arts education</em></h3>
+      <h3>
+        <em>Creating community through arts education</em>
+      </h3>
 
       <ButtonDiv>
         <DonorButtonContainer>
@@ -82,9 +86,8 @@ const DonorButtonContainer = styled.div`
   width: 175px;
   display: flex;
   opacity: 100%;
-  
-  :hover{
-    opacity:70%;
+  :hover {
+    opacity: 70%;
   }
 `;
 

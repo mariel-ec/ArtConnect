@@ -9,25 +9,25 @@ const GrantDetails = () => {
   const navigate = useNavigate();
   const { setGrantDetail, grantDetail } = useContext(DonorContext);
 
-
+  //send any deleted information to mongoDB
   const deleteHandler = () => {
     fetch(`/api/deletegrant/${grantId}`, {
       method: "DELETE",
     })
-    .then((res) => res.json())
-    .then((data) => {
-      if (data.status === 200) {
-        window.alert("Grant deleted!");
-        setTimeout(() => {
-          navigate("/grants");
-        }, 2000)
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 200) {
+          window.alert("Grant deleted!");
+          setTimeout(() => {
+            navigate("/grants");
+          }, 2000);
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   };
-
+  //fetch the specific details of the grant selected on the dashboard
   useEffect(() => {
     fetch(`/api/grantdetails/${grantId}`)
       .then((res) => res.json())
@@ -42,32 +42,39 @@ const GrantDetails = () => {
   if (!grantDetail) {
     return <div>loading...</div>;
   }
-
+  //return includes the specific details of the selected grant, button to edit information and delete the grant card
   return (
     <>
       <Wrapper>
         <Grant key={grantDetail.o_id}>
           <ul>
-          <Img src={GRANTSLOGO}/>
-          <NameOfGrant>Grant Name:  {`${
-            grantDetail.nameOfGrant ? grantDetail.nameOfGrant : ""
-            }`}</NameOfGrant>
-          <GrantBody> Granting Body: {`${
-            grantDetail.grantBody ? grantDetail.grantBody : ""
-            }`}</GrantBody>
-          <GrantAmount>Amount of Grant: {`${
-            grantDetail.grantAmount ? grantDetail.grantAmount : ""
-            }`}</GrantAmount>
-          <GrantDate>Grant Deadline:   {`${
-            grantDetail.dueDate ? grantDetail.dueDate : ""
-            }`}
-            </GrantDate> 
+            <Img src={GRANTSLOGO} />
+            <NameOfGrant>
+              Grant Name:{" "}
+              {`${grantDetail.nameOfGrant ? grantDetail.nameOfGrant : ""}`}
+            </NameOfGrant>
+            <GrantBody>
+              {" "}
+              Granting Body:{" "}
+              {`${grantDetail.grantBody ? grantDetail.grantBody : ""}`}
+            </GrantBody>
+            <GrantAmount>
+              Amount of Grant:{" "}
+              {`${grantDetail.grantAmount ? grantDetail.grantAmount : ""}`}
+            </GrantAmount>
+            <GrantDate>
+              Grant Deadline:{" "}
+              {`${grantDetail.dueDate ? grantDetail.dueDate : ""}`}
+            </GrantDate>
             <Button
               onClick={() => {
-                navigate(`/grantdetails/${grantId}/grantform`);;
+                navigate(`/grantdetails/${grantId}/grantform`);
               }}
-              > Edit </Button>
-              <Button onClick={deleteHandler}> Delete Grant </Button>
+            >
+              {" "}
+              Edit{" "}
+            </Button>
+            <Button onClick={deleteHandler}> Delete Grant </Button>
           </ul>
         </Grant>
       </Wrapper>
@@ -77,19 +84,15 @@ const GrantDetails = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  /* font-family: var(--body-font); */
+
   align-items: center;
   flex-direction: column;
   justify-items: center;
-  /* margin-left: 30em;
-  margin-top: 1em; */
-  /* width: 50em; */
+
   padding: 4.5em;
 
   flex-wrap: wrap;
   background-color: #f7f5ed;
-
-  /* flex-wrap: wrap; */
 `;
 
 const Grant = styled.div`
@@ -109,8 +112,7 @@ const Img = styled.img`
   max-height: 250px;
   display: flex;
   margin-left: 70px;
-`
-
+`;
 
 const Button = styled.button`
   border: none;
@@ -122,8 +124,8 @@ const Button = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  top:2em;
-  
+  top: 2em;
+
   left: 4.3em;
   margin-bottom: 1em;
   :hover {
@@ -135,25 +137,24 @@ const Button = styled.button`
   }
 `;
 const NameOfGrant = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
-  color: black
-  
+  color: black;
 `;
 
 const GrantBody = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
 `;
 
 const GrantAmount = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
 `;
 const GrantDate = styled.div`
-margin-left: 65px;
+  margin-left: 65px;
   font-size: 18px;
   color: black;
 `;

@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Globalstyles from "./components/Globalstyles";
 
 import React, { useContext, useEffect, useParams } from "react";
-// import DonorNav from "./components/DonorNav";
+
 import Nav from "./components/NavBar";
 import HomePage from "./pages/HomePage";
 
@@ -21,25 +21,11 @@ import GrantDetails from "./pages/GrantDetails";
 import UpdateGrant from "./pages/GrantForm";
 import NewGrant from "./pages/NewGrant";
 
-import DonorContext from "./DonorContext";
-
 const App = () => {
-  const { setDonor } = useContext(DonorContext);
-
-  // console.log("here", window.location);
-  // const donorId = useParams().donorId;
-  // const { setDonorDetail, donorDetail } = useContext(DonorContext);
-
-  const { setFundraiser } = useContext(DonorContext);
-  // const { setGrant } = useContext(DonorContext);
-  // const { setFundraiser } = useContext()
-
   return (
     <div className="app">
       <BrowserRouter>
-      <Globalstyles />
-
-
+        <Globalstyles />
 
         {window.location.pathname !== "/" && <Nav />}
         <Routes>

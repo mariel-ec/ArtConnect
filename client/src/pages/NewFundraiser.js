@@ -3,116 +3,96 @@ import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const AddFundraiser = () => {
-   
-    const [fundraiserData, setFundraiserData] = useState({});
-    const navigate = useNavigate();
-    const onChangeHandler = (e) => {
-        setFundraiserData({
-            ...fundraiserData,
-            [e.target.name]: e.target.value,
-        });
-    };
+  const [fundraiserData, setFundraiserData] = useState({});
+  const navigate = useNavigate();
+  const onChangeHandler = (e) => {
+    setFundraiserData({
+      ...fundraiserData,
+      [e.target.name]: e.target.value,
+    });
+  };
+  //post all information of new fundraiser created to mongodb
+  const submitHandler = (e) => {
+    e.preventDefault();
+    fetch(`/api/newfundraiser`, {
+      headers: { "Content-Type": "application/json" },
+      method: "POST",
+      body: JSON.stringify(fundraiserData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.status === 201) {
+          navigate(`/fundraiserdetails/${data.data._id}`);
+        }
+      });
+  };
 
-    const submitHandler = (e) => {
-        e.preventDefault();
-        fetch(`/api/newfundraiser`, {
-            headers: { "Content-Type": "application/json"},
-            method: "POST",
-            body: JSON.stringify(fundraiserData),
-        })
-        .then((res) => res.json ())
-        .then((data) => {
-            if (data.status === 201) {
-                navigate(`/fundraiserdetails/${data.data._id}`);
-            }
-        });
-    };
+  return (
+    <Wrapper>
+      <h1>New Fundraiser Information</h1>
 
-    return (
-        <Wrapper>
-            <h1>Edit Fundraiser Information
-            </h1>
-
-            <Form onSubmit={submitHandler}>
-                <ul>
-                  <ol>
-                <label>Fundraiser Name: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="nameOfFundraiser"
-            type="text"
-            value={fundraiserData.nameOfFundraiser}
-  
-          />
-  </ol><ol>
-          <label>Fundraiser Date: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="dateOfFundraiser"
-            type="text"
-            value={fundraiserData.dateOfFundraiser}
-        
-          />
-  </ol><ol>
-          <label>Fundraiser Location: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="locationOfFundraiser"
-            type="text"
-            value={fundraiserData.locationOfFundraiser}
-     
-          />
-  </ol><ol>
-          <label>Coordinator: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="coordinator"
-            type="text"
-            value={fundraiserData.coordinator}
-
-          />
-</ol><ol>
-          <label>Fundraising Goal: </label>
-          <input
-            onChange={(e) => {
-              onChangeHandler(e);
-            }}
-            name="fundraisingGoal"
-            type="text"
-            value={fundraiserData.fundraisingGoal}
-
-          
-          />
-
-</ol>
-
-
-
-                </ul>
-                <Button type="submit">Add ! </Button> 
-               
-            </Form>
-
-
-
-        </Wrapper>
-
-
-
-
-    );
-    
-
-
-
+      <Form onSubmit={submitHandler}>
+        <ul>
+          <ol>
+            <label>Fundraiser Name: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="nameOfFundraiser"
+              type="text"
+              value={fundraiserData.nameOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Fundraiser Date: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="dateOfFundraiser"
+              type="text"
+              value={fundraiserData.dateOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Fundraiser Location: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="locationOfFundraiser"
+              type="text"
+              value={fundraiserData.locationOfFundraiser}
+            />
+          </ol>
+          <ol>
+            <label>Coordinator: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="coordinator"
+              type="text"
+              value={fundraiserData.coordinator}
+            />
+          </ol>
+          <ol>
+            <label>Fundraising Goal: </label>
+            <input
+              onChange={(e) => {
+                onChangeHandler(e);
+              }}
+              name="fundraisingGoal"
+              type="text"
+              value={fundraiserData.fundraisingGoal}
+            />
+          </ol>
+        </ul>
+        <Button type="submit">Add ! </Button>
+      </Form>
+    </Wrapper>
+  );
 };
 
 const Wrapper = styled.div`
@@ -137,7 +117,7 @@ const Form = styled.form`
 `;
 
 const Button = styled.button`
-border: none;
+  border: none;
   align-self: flex-end;
   border-radius: 1.5em;
   width: 20em;

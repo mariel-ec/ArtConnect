@@ -4,13 +4,12 @@ import styled from "styled-components";
 import { DonorContext } from "../DonorContext";
 
 export const GrantDash = () => {
-  // const grantId = useParams().grantId;
   const { grant, setGrant } = useContext(DonorContext);
   const navigate = useNavigate();
   const handleGrantDetail = (url) => {
     navigate(url);
   };
-
+  //fetch all grants to be display on the grant dashboard
   useEffect(() => {
     fetch(`/api/grants`)
       .then((res) => res.json())
@@ -21,11 +20,10 @@ export const GrantDash = () => {
         console.log(e);
       });
   }, []);
-
+  //default to loading if there is not grant information to show
   if (!grant) return <Loading>Loading...</Loading>;
 
-  // const grantsToShow = grant.slide();
-
+  //return includes all the grant cards and button to add new grant
   return (
     <Wrapper>
       <h1>Grants</h1>
@@ -94,7 +92,6 @@ const Grants = styled.button`
   height: 5em;
   justify-content: space-between;
   align-items: center;
-  /* gap: 10px; */
   flex-direction: column;
   background-color: white;
   :hover {

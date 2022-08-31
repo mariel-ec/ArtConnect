@@ -6,7 +6,7 @@ export const DonorProvider = ({ children }) => {
   const [donorDetail, setDonorDetail] = useState("");
   const [updateDonor, setUpdateDonor] = useState("");
   const [donorLoad, setDonorLoad] = useState(false);
-  
+
   const [fundraiser, setFundraiser] = useState([]);
   const [fundraiserDetail, setFundraiserDetail] = useState("");
   const [updateFundraiser, setUpdateFundraiser] = useState("");
@@ -14,8 +14,6 @@ export const DonorProvider = ({ children }) => {
   const [grant, setGrant] = useState([]);
   const [grantDetail, setGrantDetail] = useState("");
   const [updateGrant, setUpdateGrant] = useState("");
-
- 
 
   return (
     <DonorContext.Provider
