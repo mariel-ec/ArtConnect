@@ -2,21 +2,17 @@ import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DonorContext from "../DonorContext";
-import FundLogo from "../images/dummyprofilepic/FundLogo.png";
+
 
 const DonorDetails = () => {
-  // const [count, setCount] = useState(0);
+
 
   const donorId = useParams().donorId;
   const navigate = useNavigate();
-  // const o_id = useParams().o_id;
+  
   const { setDonorDetail, donorDetail } = useContext(DonorContext);
 
-  // const handleSelect = (e) => {
-  //   setCount(e.target.value);
-  // };
-  //  fetch(`api/donors/${donorId}`)
-  //
+
 
   const deleteHandler = () => {
     fetch(`/api/deletedonor/${donorId}`, {
@@ -115,19 +111,17 @@ const DonorDetails = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  /* font-family: var(--body-font); */
+
   align-items: center;
   flex-direction: column;
   justify-items: center;
-  /* margin-left: 30em;
-  margin-top: 1em; */
-  /* width: 50em; */
+ 
   padding: 4.5em;
 
   flex-wrap: wrap;
   background-color: #f7f5ed;
 
-  /* flex-wrap: wrap; */
+
 `;
 const ProfilePic = styled.div`
   display: relative;
@@ -151,12 +145,7 @@ const TextArea = styled.div`
   flex-grow: 1;
 `;
 
-// const Address = styled.div`
-//   display: flex;
-//   position: relative;
-//   left: 5em;
-//   bottom: 1.7em;
-// `;
+
 
 const Button = styled.button`
 
