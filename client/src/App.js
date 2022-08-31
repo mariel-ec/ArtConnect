@@ -1,4 +1,5 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Globalstyles from "./components/Globalstyles";
 
 import React, { useContext, useEffect, useParams } from "react";
 // import DonorNav from "./components/DonorNav";
@@ -36,6 +37,10 @@ const App = () => {
   return (
     <div className="app">
       <BrowserRouter>
+      <Globalstyles />
+
+
+
         {window.location.pathname !== "/" && <Nav />}
         <Routes>
           <Route exact path="/" element={<HomePage />} />

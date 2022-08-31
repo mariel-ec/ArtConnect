@@ -85,6 +85,7 @@ const Div = styled.div`
   padding: 5em;
   gap: 2em;
   flex-grow: 1;
+  
 `;
 
 const DetailDiv = styled.div`
@@ -94,6 +95,7 @@ color: black;
    padding-left: 5vh;
    padding-right: 5vh;
     align-items: center;
+    background-color: white;
 `
 
 const Fundraisers = styled.div`
@@ -109,7 +111,7 @@ const Fundraisers = styled.div`
   background-color: white;
   :hover {
     cursor: pointer;
-    background-color: #e2d3cf;
+  
 
     color: black;
     transition: 0.5s;
@@ -123,6 +125,7 @@ position: left;
 max-height: 50px;
 padding-left: 10vh;
 padding-right: 10vh;
+background-color: white;
 
 
 `
@@ -132,6 +135,7 @@ const NameOfFundraiser = styled.div`
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `;
 
 const LocationDate = styled.div`
@@ -140,6 +144,7 @@ const LocationDate = styled.div`
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `
 
 const Coordinator = styled.div`
@@ -148,6 +153,7 @@ const Coordinator = styled.div`
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `;
 
 const ButtonNew = styled.button`
@@ -160,8 +166,8 @@ const ButtonNew = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  top: 0.2em;
-  left: 10em;
+  top: 2em;
+  left: 18em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;
@@ -171,26 +177,7 @@ const ButtonNew = styled.button`
   }
 `
 
-const ButtonDon = styled.button`
-border: none;
-  align-self: flex-end;
-  border-radius: 1.5em;
-  width: 20em;
-  height: 2.8em;
-  font-size: 0.9em;
-  background-color: #959595;
-  color: black;
-  position: relative;
-  top: 0.2em;
-  left: 10em;
-  :hover {
-    cursor: pointer;
-    background: #aaaaaa;
-    color: black;
-    transform: scale(1.08);
-    transition: 0.3s;
-  }
-`
+
 
 const Loading = styled.div`
   font-size: 1.5em;

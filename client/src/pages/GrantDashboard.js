@@ -1,8 +1,7 @@
 import React, { useState, useContext, useEffect, useParams } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import styled from "styled-components";
-import { DonorContext } from "../DonorContext"
-// import GrantLogo from "../images/dummyprofilepic/GLogo.png"
+import { DonorContext } from "../DonorContext";
 
 export const GrantDash = () => {
   // const grantId = useParams().grantId;
@@ -43,7 +42,6 @@ export const GrantDash = () => {
               }}
             >
               <DetailDiv>
-                {/* <Img src={GrantLogo} /> */}
                 <NameOfGrant>{`${grants.nameOfGrant}`}</NameOfGrant>
                 <GrantBody>{`${grants.grantBody}`}</GrantBody>
                 <GrantAmount>{`${grants.grantAmount}`}</GrantAmount>
@@ -84,6 +82,7 @@ const DetailDiv = styled.div`
   padding-left: 5vh;
   padding-right: 5vh;
   align-items: center;
+  background-color: white;
 `;
 
 const Grants = styled.button`
@@ -100,7 +99,6 @@ const Grants = styled.button`
   background-color: white;
   :hover {
     cursor: pointer;
-    background-color: #e2d3cf;
 
     color: black;
     transition: 0.5s;
@@ -109,19 +107,13 @@ const Grants = styled.button`
   }
 `;
 
-const Img = styled.div`
-  position: left;
-  max-height: 50px;
-  padding-left: 10vh;
-  padding-right: 10vh;
-`;
-
 const NameOfGrant = styled.div`
   bottom: 15vh;
   padding-left: 5vh;
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `;
 
 const GrantBody = styled.div`
@@ -130,6 +122,7 @@ const GrantBody = styled.div`
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `;
 
 const Loading = styled.div`
@@ -144,6 +137,7 @@ const GrantAmount = styled.div`
   padding-right: 5vh;
   color: #a10a0a;
   padding-top: 1em;
+  background-color: white;
 `;
 
 const ButtonNew = styled.button`
@@ -156,8 +150,8 @@ const ButtonNew = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  top: 0.2em;
-  left: 10em;
+  top: 2em;
+  left: 13em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;

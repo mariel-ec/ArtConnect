@@ -130,15 +130,15 @@ export const DonorDash = () => {
 
 const Wrapper = styled.div`
   display: flex;
-  font-family: var(--body-font);
+  
   align-items: center;
   flex-direction: column;
   margin: 0px;
   gap: 10px;
   padding: 4em;
 
-  flex-wrap: wrap;
-  background-color: #f7f5ed;
+  
+  
 `;
 
 const SearchBar = styled.div`
@@ -165,6 +165,7 @@ const Img = styled.img`
 `;
 
 const Button = styled.button`
+  
   border: none;
   align-self: flex-end;
   border-radius: 1.5em;
@@ -173,7 +174,7 @@ const Button = styled.button`
   font-size: 0.9em;
   background-color: #959595;
   color: black;
-  position: relative;
+  position: center;
   bottom: 0.2em;
   left: 10em;
   :hover {
@@ -195,8 +196,9 @@ const ButtonNew = styled.button`
   background-color: #959595;
   color: black;
   position: relative;
-  top: 0.2em;
-  left: 10em;
+ 
+  top: 2em;
+  left: 23em;
   :hover {
     cursor: pointer;
     background: #aaaaaa;
@@ -230,19 +232,7 @@ const Donors = styled.div`
 
 
 
-// const Name = styled.div`
-//   color: black;
-//   font-weight: bold;
-//   margin-bottom: 30%;
 
-// `;
-
-// const City = styled.div`
-//   color: black;
-//   padding-bottom: 10%;
-
-
-// `;
 
 
 
